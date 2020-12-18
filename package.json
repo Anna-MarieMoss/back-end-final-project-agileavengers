@@ -1,0 +1,23 @@
+{
+  "name": "back-end-final-project-agileavengers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-table": "node db/scripts/create_table.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchoolOfCode/back-end-final-project-agileavengers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SchoolOfCode/back-end-final-project-agileavengers/issues"
+  },
+  "homepage": "https://github.com/SchoolOfCode/back-end-final-project-agileavengers#readme",
+  "dependencies": {
+    "pg": "^8.5.1"
+  }
+}
