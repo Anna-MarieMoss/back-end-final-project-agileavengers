@@ -1,6 +1,7 @@
 const postsModel = require('../models/posts');
 
-const getAllPosts = async (req, res, next) => {
+
+async function getAllPosts(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.getAllPosts(),
