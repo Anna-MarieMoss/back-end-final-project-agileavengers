@@ -1,7 +1,7 @@
 const { query } = require('../index.js');
 
 async function createUsersTable() {
-  let res = await query(`CREATE TABLE users (
+  let res = await query(`CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name TEXT,
     email TEXT,
@@ -14,9 +14,9 @@ async function createUsersTable() {
 }
 
 async function createPostsTable() {
-  let res = await query(`CREATE TABLE posts (
+  let res = await query(`CREATE TABLE IF NOT EXISTS posts (
       id SERIAL PRIMARY KEY,
-      user_id FOREIGN KEY REFERENCES users (id) ON DELETE CASCADE,
+      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       post TEXT,
       multimedia TEXT,
       date TIMESTAMP,
@@ -28,7 +28,7 @@ async function createPostsTable() {
 async function createMoodsTable() {
   let res = await query(`CREATE TABLE moods (
       id SERIAL PRIMARY KEY,
-      user_id FOREIGN KEY REFERENCES users (id) ON DELETE CASCADE,
+      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       mood INTEGER,
       date TIMESTAMP
   )`);
@@ -38,7 +38,7 @@ async function createMoodsTable() {
 async function createTrophiesTable() {
   let res = await query(`CREATE TABLE trophies (
       id SERIAL PRIMARY KEY,
-      user_id FOREIGN KEY REFERENCES users (id) ON DELETE CASCADE,
+      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       trophy_name TEXT,
       awarded BOOLEAN
   )`);
@@ -48,7 +48,7 @@ async function createTrophiesTable() {
 async function createQuotesTable() {
   let res = await query(`CREATE TABLE quotes (
       id SERIAL PRIMARY KEY,
-      user_id FOREIGN KEY REFERENCES users (id) ON DELETE CASCADE,
+      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       quote TEXT
   )`);
   console.log(res);
@@ -57,7 +57,7 @@ async function createQuotesTable() {
 async function createNotificationsTable() {
   let res = await query(`CREATE TABLE notifications (
       id SERIAL PRIMARY KEY,
-      user_id FOREIGN KEY REFERENCES users (id) ON DELETE CASCADE,
+      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       notification TEXT
   )`);
   console.log(res);
@@ -65,8 +65,11 @@ async function createNotificationsTable() {
 
 const createAllTables = async () => {
   await createUsersTable();
+  console.log('users created');
   await createPostsTable();
+  console.log('posts created');
   await createMoodsTable();
+  console.log('moods created');
   await createTrophiesTable();
   await createQuotesTable();
   await createNotificationsTable();
