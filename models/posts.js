@@ -10,6 +10,18 @@ async function getAllPosts() {
   return response.rows;
 }
 
+async function getPostsById(id) {
+  const response = await query(
+    `SELECT * FROM posts
+      WHERE user_id = 1
+      ORDER BY date;`, 
+      [id]
+  );
+  return response.rows;
+}
+
+
 module.exports = {
   getAllPosts,
+  getPostsById
 };

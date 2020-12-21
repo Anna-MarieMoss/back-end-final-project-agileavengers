@@ -1,5 +1,4 @@
 const initialUser = {
-  id: 3,
   name: 'Alice',
   email: 'alice@alice.com',
   password: 'password',
@@ -9,7 +8,6 @@ const initialUser = {
 };
 
 const initialPost = {
-  id: 1,
   user_id: 1,
   post: 'I love the course',
   multimedia: null,
@@ -18,7 +16,6 @@ const initialPost = {
 };
 
 const initialMood = {
-  id: 1,
   user_id: 1,
   mood: 5,
   date: '2020-09-20',
