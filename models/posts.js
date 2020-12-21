@@ -20,28 +20,29 @@ async function getPostsById(id) {
   return response.rows;
 }
 
-async function getPostsById(id) {
+async function getPostsByFavorites(id) {
   const response = await query(
     `SELECT * FROM posts
-      WHERE user_id = $1
+      WHERE user_id = $1 AND favorite = true
       ORDER BY date;`,
     [id]
   );
   return response.rows;
 }
 
-async function getPostsByFavorites(id) {
+async function deletePostsById(id) {
   const response = await query(
-    `SELECT * FROM posts
-      WHERE user_id = $1 AND favorite = 1
-      ORDER BY date;`,
+    `DELETE FROM posts
+     WHERE id = $1
+     RETURNING id;`,
     [id]
   );
-  return response.rows;
+  return response.rows.id;
 }
 
 module.exports = {
   getAllPosts,
   getPostsById,
   getPostsByFavorites,
+  deletePostsById,
 };

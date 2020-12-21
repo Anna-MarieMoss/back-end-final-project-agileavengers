@@ -12,4 +12,7 @@ router.get('/:userId', postsController.getPostsById);
 /* GET posts by ID and favorites */
 router.get('/:userId/fave', postsController.getPostsByFavorites);
 
+/* DELETE individual posts by it's unique ID*/
+router.delete('/:id', postsController.deletePostsById);
+
 module.exports = router;

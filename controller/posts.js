@@ -18,7 +18,14 @@ async function getPostsById(req, res, next) {
 async function getPostsByFavorites(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.getPostsByFavorites(req.params.id),
+    payload: await postsModel.getPostsByFavorites(req.params.userId),
+  });
+}
+
+async function deletePostsById(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.deletePostsById(req.params.id),
   });
 }
 
@@ -26,4 +33,5 @@ module.exports = {
   getAllPosts,
   getPostsById,
   getPostsByFavorites,
+  deletePostsById
 };
