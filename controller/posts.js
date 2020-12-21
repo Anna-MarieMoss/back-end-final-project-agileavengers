@@ -26,6 +26,7 @@ async function deletePostsById(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.deletePostsById(req.params.id),
+    message: `Deleted note with ID: ${req.params.id}`
   });
 }
 
