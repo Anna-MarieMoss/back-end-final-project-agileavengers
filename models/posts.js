@@ -10,39 +10,51 @@ async function getAllPosts() {
   return response.rows;
 }
 
-async function getPostsById(id) {
+async function getPostById(userId) {
   const response = await query(
     `SELECT * FROM posts
       WHERE user_id = $1
       ORDER BY date;`,
-    [id]
+    [userId]
   );
   return response.rows;
 }
 
-async function getPostsByFavorites(id) {
+async function getPostsByFavorites(userId) {
   const response = await query(
     `SELECT * FROM posts
       WHERE user_id = $1 AND favorite = true
       ORDER BY date;`,
-    [id]
+    [userId]
   );
   return response.rows;
 }
 
-async function deletePostsById(id) {
+async function createPost(newPost) {
+  const response = await query(
+    `INSERT INTO
+      posts(user_id, post, multimedia, date, favorite)
+      VALUES ($1,$2,$3,$4,$5)
+      RETURNING id;`,
+    [newPost.userId, newPost.post, newPost.multimedia, newPost.date, false]
+  );
+  return response.rows;
+}
+
+async function deletePostByPostId(postId) {
   const response = await query(
     `DELETE FROM posts
      WHERE id = $1
      RETURNING id;`,
-    [id]
+    [postId]
   );
   return response.rows.id;
 }
 
 module.exports = {
   getAllPosts,
-  getPostsById,
+  getPostById,
   getPostsByFavorites,
-  deletePostsById,
+  createPost,
+  deletePostByPostId,
 };

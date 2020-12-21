@@ -6,13 +6,16 @@ const postsController = require('../controller/posts');
 /* GET all posts */
 router.get('/', postsController.getAllPosts);
 
-/* GET posts by ID */
-router.get('/:userId', postsController.getPostsById);
+/* GET post by ID */
+router.get('/:userId', postsController.getPostById);
 
-/* GET posts by ID and favorites */
+/* GET post by ID and favorites */
 router.get('/:userId/fave', postsController.getPostsByFavorites);
 
+/* POST new post */
+router.post('/', postsController.createPost);
+
 /* DELETE individual posts by it's unique ID*/
-router.delete('/:id', postsController.deletePostsById);
+router.delete('/:postId', postsController.deletePostByPostId);
 
 module.exports = router;

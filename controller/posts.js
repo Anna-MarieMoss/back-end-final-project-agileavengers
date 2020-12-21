@@ -7,7 +7,7 @@ async function getAllPosts(req, res, next) {
   });
 }
 
-async function getPostsById(req, res, next) {
+async function getPostById(req, res, next) {
   console.log(req.params);
   res.json({
     success: true,
@@ -22,17 +22,26 @@ async function getPostsByFavorites(req, res, next) {
   });
 }
 
-async function deletePostsById(req, res, next) {
+async function createPost(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.deletePostsById(req.params.id),
-    message: `Deleted note with ID: ${req.params.id}`
+    payload: await postsModel.createPost(req.body),
+    message: `Created post: "${req.body.post}"`,
+  });
+}
+
+async function deletePostByPostId(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.deletePostByPostId(req.params.postId),
+    message: `Deleted note with ID: ${req.params.postId}`,
   });
 }
 
 module.exports = {
   getAllPosts,
-  getPostsById,
+  getPostById,
   getPostsByFavorites,
-  deletePostsById
+  createPost,
+  deletePostByPostId,
 };
