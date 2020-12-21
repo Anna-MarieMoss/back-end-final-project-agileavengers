@@ -31,22 +31,18 @@ async function populateUsersTable() {
 }
 
 async function populatePostsTable() {
-  await query(
-    `INSERT INTO posts(
+  for (const post of initialPost) {
+    await query(
+      `INSERT INTO posts(
           user_id,
           post,
           multimedia,
           date,
           favorite
         ) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
-    [
-      initialPost.user_id,
-      initialPost.post,
-      initialPost.multimedia,
-      initialPost.date,
-      initialPost.favorite,
-    ]
-  );
+      [post.userId, post.post, post.multimedia, post.date, post.favorite]
+    );
+  }
 }
 
 async function populateMoodsTable() {
@@ -56,7 +52,7 @@ async function populateMoodsTable() {
           mood,
           date
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialMood.user_id, initialMood.mood, initialMood.date]
+    [initialMood.userId, initialMood.mood, initialMood.date]
   );
 }
 
@@ -67,7 +63,7 @@ async function populateTrophiesTable() {
           trophy_name,
           awarded
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialTrophy.user_id, initialTrophy.trophy_name, initialTrophy.awarded]
+    [initialTrophy.userId, initialTrophy.trophy_name, initialTrophy.awarded]
   );
 }
 
@@ -77,7 +73,7 @@ async function populateQuotesTable() {
           user_id,
           quote
         ) VALUES ($1, $2) RETURNING *;`,
-    [initialQuote.user_id, initialQuote.quote]
+    [initialQuote.userId, initialQuote.quote]
   );
 }
 
@@ -87,7 +83,7 @@ async function populateNotificationsTable() {
           user_id,
           notification
         ) VALUES ($1, $2) RETURNING *;`,
-    [initialNotification.user_id, initialNotification.notification]
+    [initialNotification.userId, initialNotification.notification]
   );
 }
 
