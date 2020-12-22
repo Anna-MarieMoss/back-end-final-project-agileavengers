@@ -8,7 +8,6 @@ async function getAllPosts(req, res, next) {
 }
 
 async function getPostById(req, res, next) {
-  console.log(req.params);
   res.json({
     success: true,
     payload: await postsModel.getPostsById(req.params.userId),
