@@ -36,7 +36,7 @@ async function createPost(newPost) {
       posts(user_id, post, multimedia, date, favorite)
       VALUES ($1,$2,$3,$4,$5)
       RETURNING id;`,
-    [newPost.user_id, newPost.post, newPost.multimedia, newPost.date, false]
+    [newPost.user_id, newPost.post, newPost.multimedia, new Date(), false]
   );
   return response.rows;
 }
@@ -46,17 +46,10 @@ async function updatePostByPostId(postId, updatedPost) {
     `UPDATE posts SET (
       post,
       multimedia,
-      date,
       favorite
-    ) = ($1, $2, $3, $4)
-    WHERE id = $5 RETURNING *;`,
-    [
-      updatedPost.post,
-      updatedPost.multimedia,
-      updatedPost.date,
-      updatedPost.favorite,
-      postId,
-    ]
+    ) = ($1, $2, $3)
+    WHERE id = $4 RETURNING *;`,
+    [updatedPost.post, updatedPost.multimedia, updatedPost.favorite, postId]
   );
   return response.rows;
 }
