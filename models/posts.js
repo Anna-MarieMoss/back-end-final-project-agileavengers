@@ -1,6 +1,6 @@
 const { query } = require('../db/index');
 
-//gets all posts regardless of user
+  /* GET ALL POSTS FOR ALL USERS */
 
 async function getAllPosts() {
   const response = await query(
@@ -9,6 +9,8 @@ async function getAllPosts() {
   );
   return response.rows;
 }
+
+/* GET ALL POSTS FOR A USER */
 
 async function getPostById(userId) {
   const response = await query(
@@ -20,6 +22,8 @@ async function getPostById(userId) {
   return response.rows;
 }
 
+/* GET ALL FAVE POSTS FOR A USER */
+
 async function getPostsByFavorites(userId) {
   const response = await query(
     `SELECT * FROM posts
@@ -29,6 +33,8 @@ async function getPostsByFavorites(userId) {
   );
   return response.rows;
 }
+
+/* POST A NEW POST ENTRY FOR A USER */
 
 async function createPost(newPost) {
   const response = await query(
@@ -47,6 +53,8 @@ async function createPost(newPost) {
   return response.rows;
 }
 
+/* EDIT AN EXISTING POST ENTRY FOR A USER */
+
 async function updatePostByPostId(postId, updatedPost) {
   const response = await query(
     `UPDATE posts SET (
@@ -59,6 +67,8 @@ async function updatePostByPostId(postId, updatedPost) {
   );
   return response.rows;
 }
+
+/* DELETE A POST ENTRY FOR A USER */
 
 async function deletePostByPostId(postId) {
   const response = await query(
