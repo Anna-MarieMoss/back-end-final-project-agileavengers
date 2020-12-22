@@ -9,19 +9,11 @@ async function getAllMoods() {
   );
   return response.rows;
 }
+/* GET ALL MOODS FOR ONE USER*/
 
 async function getMoodById(userId) {
   const response = await query(
     `SELECT * FROM moods
-    );
-    return response.rows`;
-  }
-
-  /* GET ALL MOODS FOR ONE USER*/
-
-  async function getMoodById(userId) {
-    const response = await query(
-      `SELECT * FROM moods
         WHERE user_id = $1
         ORDER BY date;`,
     [userId]
