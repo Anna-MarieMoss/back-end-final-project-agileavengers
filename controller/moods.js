@@ -23,8 +23,7 @@ async function createMood(req, res, next) {
 }
 
 module.exports = {
-    getAllMoods,
-    getMoodById,
-    createMood,
+  getAllMoods,
+  getMoodById,
+  createMood,
 };
-  

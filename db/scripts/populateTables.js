@@ -40,7 +40,13 @@ async function populatePostsTable() {
           date,
           favorite
         ) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
-      [post.userId, post.post, post.multimedia, post.date, post.favorite]
+      [
+        post.userId,
+        post.post,
+        post.multimedia,
+        new Date().toDateString(),
+        post.favorite,
+      ]
     );
   }
 }
@@ -52,7 +58,7 @@ async function populateMoodsTable() {
           mood,
           date
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialMood.userId, initialMood.mood, initialMood.date]
+    [initialMood.userId, initialMood.mood, '1/1/2020']
   );
 }
 

@@ -7,6 +7,7 @@ var indexRouter = require('./routes/index');
 var postsRouter = require('./routes/posts');
 var usersRouter = require('./routes/users');
 var moodsRouter = require('./routes/moods');
+var moodsAndPostsRouter = require('./routes/moodsAndPosts');
 
 var app = express();
 
@@ -20,5 +21,6 @@ app.use('/', indexRouter);
 app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
 app.use('/moods', moodsRouter);
+app.use('/moodsandposts', moodsAndPostsRouter);
 
 module.exports = app;

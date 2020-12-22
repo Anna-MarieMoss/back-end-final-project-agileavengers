@@ -7,7 +7,7 @@ async function createUsersTable() {
     email TEXT,
     password TEXT,
     personality TEXT,
-    start_date TIMESTAMP,
+    start_date DATE,
     points INTEGER
 )`);
   console.log(res);
@@ -19,7 +19,7 @@ async function createPostsTable() {
       user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       post TEXT,
       multimedia TEXT,
-      date TIMESTAMP,
+      date DATE,
       favorite BOOLEAN
   )`);
   console.log(res);
@@ -30,7 +30,7 @@ async function createMoodsTable() {
       id SERIAL PRIMARY KEY,
       user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       mood INTEGER,
-      date TIMESTAMP
+      date DATE
   )`);
   console.log(res);
 }

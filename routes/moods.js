@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const postsController = require('../controller/moods');
+const moodsController = require('../controller/moods');
 
 /* GET all mood entries */
-router.get('/', postsController.getAllMoods);
+router.get('/', moodsController.getAllMoods);
 
 /* GET mood entry by ID */
-router.get('/:userId', postsController.getMoodById);
+router.get('/:userId', moodsController.getMoodById);
 
 /* POST new mood entry */
-router.post('/', postsController.createMood);
+router.post('/', moodsController.createMood);
 
 module.exports = router;

@@ -34,7 +34,6 @@ const initialTrophy = {
   id: 1,
   userId: 1,
   trophy_name: 'Welcome Trophy',
-  date: '2020-09-20',
 };
 
 const initialQuote = {

@@ -34,9 +34,15 @@ async function createPost(newPost) {
   const response = await query(
     `INSERT INTO
       posts(user_id, post, multimedia, date, favorite)
-      VALUES ($1,$2,$3,$4,$5)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING id;`,
-    [newPost.user_id, newPost.post, newPost.multimedia, new Date(), false]
+    [
+      newPost.user_id,
+      newPost.post,
+      newPost.multimedia,
+      new Date().toDateString(),
+      false,
+    ]
   );
   return response.rows;
 }
