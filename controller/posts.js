@@ -11,7 +11,7 @@ async function getPostById(req, res, next) {
   console.log(req.params);
   res.json({
     success: true,
-    payload: await postsModel.getPostsById(req.params.userId),
+    payload: await postsModel.getPostById(req.params.userId),
   });
 }
 
@@ -26,7 +26,15 @@ async function createPost(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.createPost(req.body),
-    message: `Created post: "${req.body.post}"`,
+    message: `Created post: "${req.body.post}" for ${req.body.user_id}`,
+  });
+}
+
+async function updatePostByPostId(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.updatePostByPostId(req.params.postId, req.body),
+    message: `Patched post: "${req.body.post}" with ID: ${req.params.postId}`,
   });
 }
 
@@ -43,5 +51,6 @@ module.exports = {
   getPostById,
   getPostsByFavorites,
   createPost,
+  updatePostByPostId,
   deletePostByPostId,
 };

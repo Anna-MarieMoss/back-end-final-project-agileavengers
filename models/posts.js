@@ -36,7 +36,27 @@ async function createPost(newPost) {
       posts(user_id, post, multimedia, date, favorite)
       VALUES ($1,$2,$3,$4,$5)
       RETURNING id;`,
-    [newPost.userId, newPost.post, newPost.multimedia, newPost.date, false]
+    [newPost.user_id, newPost.post, newPost.multimedia, newPost.date, false]
+  );
+  return response.rows;
+}
+
+async function updatePostByPostId(postId, updatedPost) {
+  const response = await query(
+    `UPDATE posts SET (
+      post,
+      multimedia,
+      date,
+      favorite
+    ) = ($1, $2, $3, $4)
+    WHERE id = $5 RETURNING *;`,
+    [
+      updatedPost.post,
+      updatedPost.multimedia,
+      updatedPost.date,
+      updatedPost.favorite,
+      postId,
+    ]
   );
   return response.rows;
 }
@@ -56,5 +76,6 @@ module.exports = {
   getPostById,
   getPostsByFavorites,
   createPost,
+  updatePostByPostId,
   deletePostByPostId,
 };

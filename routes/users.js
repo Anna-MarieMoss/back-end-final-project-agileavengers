@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const postsController = require('../controller/users');
+const usersController = require('../controller/users');
 
 /* GET user by ID */
-router.get('/:userId', postsController.getUserById);
+router.get('/:userId', usersController.getUserById);
 
 /* POST new user */
-router.post('/', postsController.createUser);
+router.post('/', usersController.createUser);
+
+router.patch('/:userId', usersController.updateUserByUserId);
 
 module.exports = router;
