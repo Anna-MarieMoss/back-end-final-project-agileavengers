@@ -1,5 +1,7 @@
 const { query } = require('../db/index');
 
+/* GET ALL MOODS FOR ALL USERS*/
+
 async function getAllMoods() {
     const response = await query(
       `SELECT * FROM moods
@@ -7,7 +9,9 @@ async function getAllMoods() {
     );
     return response.rows;
   }
-  
+
+  /* GET ALL MOODS FOR ONE USER*/
+
   async function getMoodById(userId) {
     const response = await query(
       `SELECT * FROM moods
@@ -17,6 +21,8 @@ async function getAllMoods() {
     );
     return response.rows;
   }
+
+/* POST MOOD FOR A USER */
 
 async function createMood(newMood) {
     const response = await query(

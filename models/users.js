@@ -1,5 +1,7 @@
 const { query } = require('../db/index');
 
+/* GET ALL USERS */
+
 async function getUserById(userId) {
   const response = await query(
     `SELECT * FROM users
@@ -9,6 +11,8 @@ async function getUserById(userId) {
   );
   return response.rows;
 }
+
+/* CREATE A NEW USER */
 
 async function createUser(newUser) {
   const response = await query(
