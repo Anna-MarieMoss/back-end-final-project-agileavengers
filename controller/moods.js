@@ -10,7 +10,7 @@ async function getAllMoods(req, res, next) {
 async function getMoodById(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.getMoodsById(req.params.userId),
+    payload: await postsModel.getMoodById(req.params.userId),
   });
 }
 

@@ -10,15 +10,19 @@ const initialUser = {
 const initialPost = [
   {
     userId: 1,
-    post: 'I love the course',
-    multimedia: null,
+    text: 'I love the course',
+    image: null,
+    video: null,
+    audio: null,
     date: '2020-09-20',
     favorite: true,
   },
   {
     userId: 1,
-    post: 'I hate the course',
-    multimedia: null,
+    text: 'I hate the course',
+    image: null,
+    video: null,
+    audio: null,
     date: '2020-09-20',
     favorite: false,
   },
