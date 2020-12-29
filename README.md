@@ -4,13 +4,17 @@
 
 - **Solution**: A storyboard where bootcampers can record their experiences and how they are feeling in a fun and engaging way. Bootcampers will be able to view their posts allowing them to be reflective, monitor their moods and celebrate their achievements. This will be a mobile app - PWA - bootcampers can use their phones rather than their laptop.
 
+---
+
 # Set-up
 
-Clone server from https://github.com/SchoolOfCode/back-end-final-project-agileavengers.git
+1. Clone the repo from https://github.com/SchoolOfCode/back-end-final-project-agileavengers.git
 
-Install any node modules: **npm install**
+2. Install any node modules: **npm install**
 
-Run using: **npm run start**
+3. Run using: **npm run dev**
+
+4. OPTIONAL - Drop all current tables, create new tables and populate them with the seed data using: **npm run reinitialiseTables**
 
 # GET Requests
 
