@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const moodsController = require('../controller/moods');
+const moodsController = require('../../controller/moods');
 
 /* GET all mood entries */
 router.get('/', moodsController.getAllMoods);

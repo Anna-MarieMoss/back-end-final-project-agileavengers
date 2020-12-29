@@ -9,48 +9,41 @@ const someUserObject = expect.objectContaining({
   email: expect.any(String),
   password: expect.any(String),
   personality: expect.any(String),
-  start_date: expect.any(Date),
+  start_date: expect.any(String),
   points: expect.any(Number),
 });
 
 describe('GET /:UserId', () => {
   it('should return a User object', async () => {
-    console.log('hi');
-    try {
-      const response = await request.get('/users/1');
-      //expect(response.body.payload).toStrictEqual(someUserObject);
-      //expect(response.status).toBe(200);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
-    //expect("Content-Type", /json/);
+    const response = await request.get('/users/1');
+    expect(response.body.payload[0]).toEqual(someUserObject);
+    expect(response.status).toBe(200);
   });
 });
 
-// describe("POST /sessions", () => {
-//   it("should return the newly created session object", async (done) => {
-//     const newSession = {
-//       notes: ["note 1", "note 2"],
-//       timestamp: new Date().toISOString(),
-//       mentor_feedback: null,
-//       mentee_feedback: null,
-//       mentorId: 1,
-//       menteeId: 2,
-//     };
-//     const response = await request.post("/sessions").send(newSession);
-//     expect(response.body.payload).toMatchObject({
-//       notes: newSession.notes,
-//       timestamp: newSession.timestamp,
-//       mentor_feedback: newSession.mentor_feedback,
-//       mentee_feedback: newSession.mentee_feedback,
-//       mentor_id: newSession.mentorId,
-//       mentee_id: newSession.menteeId,
-//     });
-//     expect(response.status).toBe(200);
-//     done();
-//   });
-// });
+describe('POST /users', () => {
+  it('should return the newly created user object', async (done) => {
+    const newUser = {
+      name: 'Alice',
+      email: 'alice@alice.com',
+      password: 'password',
+      personality: 'INFP',
+      start_date: '2020-09-20',
+      points: 0,
+    };
+    const response = await request.post('/users').send(newUser);
+    expect(response.body.payload[0]).toMatchObject({
+      name: newUser.name,
+      email: newUser.email,
+      password: newUser.password,
+      personality: newUser.personality,
+      start_date: '2020-09-19T23:00:00.000Z',
+      points: newUser.points,
+    });
+    expect(response.status).toBe(200);
+    done();
+  });
+});
 
 // describe("PATCH /sessions/:id", () => {
 //   it("should", async (done) => {
