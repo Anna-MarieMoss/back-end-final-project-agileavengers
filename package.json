@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node -r dotenv/config ./bin/www",
     "dev": "node -r dotenv/config ./bin/www",
     "test": "jest --setupFiles dotenv/config --detectOpenHandles",
     "usersTest": "jest routes/users/users.test --detectOpenHandles",
