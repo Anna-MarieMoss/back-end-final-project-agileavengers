@@ -1,4 +1,11 @@
-const postsModel = require('../models/users');
+const postsModel = require("../models/users");
+
+async function getAllUsers(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.getAllUsers(),
+  });
+}
 
 async function getUserById(req, res, next) {
   res.json({
@@ -22,8 +29,18 @@ async function updateUserByUserId(req, res, next) {
   });
 }
 
+async function deleteUserById(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.deleteUserById(req.params.userId),
+    message: `Deleted user with ID: ${req.params.userId}`,
+  });
+}
+
 module.exports = {
+  getAllUsers,
   getUserById,
   createUser,
   updateUserByUserId,
+  deleteUserById,
 };

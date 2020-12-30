@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node -r dotenv/config ./bin/www",
-    "dev": "node -r dotenv/config ./bin/www",
     "test": "jest --setupFiles dotenv/config --detectOpenHandles",
-    "usersTest": "jest routes/users/users.test --detectOpenHandles",
-    "test:watch": "jest --watch",
+    "usersTest": "jest users.test dotenv/config --detectOpenHandles",
+    "test:watch": "jest --setupFiles dotenv/config --watch",
     "createTables": "node -r dotenv/config ./db/scripts/createTables.js",
     "dropTables": "node -r dotenv/config ./db/scripts/dropTables.js",
     "populateTables": "node -r dotenv/config ./db/scripts/populateTables.js",

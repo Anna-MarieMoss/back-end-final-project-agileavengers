@@ -1,4 +1,4 @@
-const { query } = require('../index.js');
+const { query } = require("../index.js");
 
 async function createUsersTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS users (
@@ -42,8 +42,7 @@ async function createTrophiesTable() {
       id SERIAL PRIMARY KEY,
       user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       trophy_name TEXT,
-      awarded BOOLEAN,
-      
+      awarded BOOLEAN
   )`);
   console.log(res);
 }
@@ -68,15 +67,15 @@ async function createNotificationsTable() {
 
 const createAllTables = async () => {
   await createUsersTable();
-  console.log('users created');
+  console.log("users created");
   await createPostsTable();
-  console.log('posts created');
+  console.log("posts created");
   await createMoodsTable();
-  console.log('moods created');
+  console.log("moods created");
   await createTrophiesTable();
   await createQuotesTable();
   await createNotificationsTable();
-  console.log('Tables should be created now.');
+  console.log("Tables should be created now.");
 };
 
 module.exports = { createAllTables };

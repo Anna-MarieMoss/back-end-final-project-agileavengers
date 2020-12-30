@@ -1,6 +1,16 @@
-const { query } = require('../db/index');
+const { query } = require("../db/index");
 
 /* GET ALL USERS */
+
+async function getAllUsers() {
+  const response = await query(
+    `SELECT * FROM users
+        ORDER BY id;`
+  );
+  return response.rows;
+}
+
+/* GET USER BY ID */
 
 async function getUserById(userId) {
   const response = await query(
@@ -36,6 +46,8 @@ async function createUser(newUser) {
   return response.rows;
 }
 
+/* UPDATE USER BY ID*/
+
 async function updateUserByUserId(userId, updatedUser) {
   const response = await query(
     `UPDATE users SET (
@@ -45,7 +57,14 @@ async function updateUserByUserId(userId, updatedUser) {
       personality,
       start_date,
       points
-    ) = ($1, $2, $3, $4, $5, $6)
+    ) = (
+      COALESCE($1, name),
+      COALESCE($2, email),
+      COALESCE($3, password),
+      COALESCE($4, personality),
+      COALESCE($5, start_date),
+      COALESCE($6, points)
+      )
     WHERE id = $7 RETURNING *;`,
     [
       updatedUser.name,
@@ -60,8 +79,22 @@ async function updateUserByUserId(userId, updatedUser) {
   return response.rows;
 }
 
+/* DELETE USER BY ID */
+
+async function deleteUserById(userId) {
+  const response = await query(
+    `DELETE FROM users
+     WHERE id = $1
+     RETURNING id;`,
+    [userId]
+  );
+  return response.rows.id;
+}
+
 module.exports = {
+  getAllUsers,
   getUserById,
   createUser,
   updateUserByUserId,
+  deleteUserById,
 };
