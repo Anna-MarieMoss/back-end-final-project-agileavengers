@@ -1,6 +1,6 @@
 const { query } = require('../db/index');
 
-  /* GET ALL POSTS FOR ALL USERS */
+/* GET ALL POSTS FOR ALL USERS */
 
 async function getAllPosts() {
   const response = await query(
@@ -39,13 +39,21 @@ async function getPostsByFavorites(userId) {
 async function createPost(newPost) {
   const response = await query(
     `INSERT INTO
-      posts(user_id, post, multimedia, date, favorite)
-      VALUES ($1, $2, $3, $4, $5)
+      posts(user_id, 
+        text, 
+        image, 
+        video, 
+        audio, 
+        date, 
+        favorite)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id;`,
     [
-      newPost.user_id,
-      newPost.post,
-      newPost.multimedia,
+      newPost.userId,
+      newPost.text,
+      newPost.image,
+      newPost.video,
+      newPost.audio,
       new Date().toDateString(),
       false,
     ]
