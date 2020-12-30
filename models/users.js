@@ -79,9 +79,22 @@ async function updateUserByUserId(userId, updatedUser) {
   return response.rows;
 }
 
+/* DELETE USER BY ID */
+
+async function deleteUserById(userId) {
+  const response = await query(
+    `DELETE FROM users
+     WHERE id = $1
+     RETURNING id;`,
+    [userId]
+  );
+  return response.rows.id;
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUserByUserId,
+  deleteUserById,
 };

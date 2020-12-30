@@ -29,9 +29,18 @@ async function updateUserByUserId(req, res, next) {
   });
 }
 
+async function deleteUserById(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.deleteUserById(req.params.userId),
+    message: `Deleted user with ID: ${req.params.userId}`,
+  });
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUserByUserId,
+  deleteUserById,
 };

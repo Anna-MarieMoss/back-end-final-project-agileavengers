@@ -13,6 +13,8 @@ const someUserObject = expect.objectContaining({
   points: expect.any(Number),
 });
 
+// TEST GET USER BY ID
+
 describe("GET /:UserId", () => {
   it("should return a User object", async (done) => {
     const response = await request.get("/users/1");
@@ -22,6 +24,8 @@ describe("GET /:UserId", () => {
     done();
   });
 });
+
+// TEST CREATING NEW USER
 
 describe("POST /users", () => {
   it("should return the newly created user object", async (done) => {
@@ -47,8 +51,10 @@ describe("POST /users", () => {
   });
 });
 
+// TEST UPDATING USER PROFILE
+
 describe("PATCH /users/:userId", () => {
-  it("should", async (done) => {
+  it("should check that patch is updating specific user info", async (done) => {
     const userId = 1;
     const updatedUser = {
       name: "Alice",
@@ -63,6 +69,29 @@ describe("PATCH /users/:userId", () => {
       name: updatedUser.name,
       email: updatedUser.email,
       password: updatedUser.password,
+      personality: expect.any(String),
+      start_date: expect.any(String),
+      points: expect.any(Number),
+    });
+    expect(response.status).toBe(200);
+    done();
+  });
+});
+
+// TEST DELETING A USER
+
+describe("DELETE /users/:userId", () => {
+  it("should delete user by id", async (done) => {
+    const userId = 1;
+    const response = await request.delete(`/users/${userId}`).send(updatedUser);
+    expect(response.body.payload[0]).toMatchObject({
+      id: userId,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      password: updatedUser.password,
+      personality: expect.any(String),
+      start_date: expect.any(String),
+      points: expect.any(Number),
     });
     expect(response.status).toBe(200);
     done();
