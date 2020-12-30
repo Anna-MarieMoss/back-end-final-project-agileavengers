@@ -40,7 +40,8 @@ async function createTrophiesTable() {
       id SERIAL PRIMARY KEY,
       user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
       trophy_name TEXT,
-      awarded BOOLEAN
+      awarded BOOLEAN,
+      
   )`);
   console.log(res);
 }
