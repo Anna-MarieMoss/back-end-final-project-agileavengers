@@ -147,3 +147,5 @@ favorite (boolean)
 Using the PostID we can delete each individual post and remove it from the database.
 
 **http://localhost:3000/posts/postId**
+
+test
