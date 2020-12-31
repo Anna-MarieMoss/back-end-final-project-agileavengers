@@ -15,9 +15,11 @@ async function getUserById(req, res, next) {
 }
 
 async function createUser(req, res, next) {
+  const data = await postsModel.createUser(req.body);
   res.json({
     success: true,
-    payload: await postsModel.createUser(req.body),
+    payload: data,
+    message: `User created with Id: ${data}`,
   });
 }
 

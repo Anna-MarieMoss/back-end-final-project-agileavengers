@@ -40,7 +40,7 @@ async function createUser(newUser) {
       newUser.password,
       newUser.personality,
       newUser.start_date,
-      newUser.points,
+      0,
     ]
   );
   return response.rows;
