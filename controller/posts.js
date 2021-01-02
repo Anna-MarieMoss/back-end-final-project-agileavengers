@@ -25,7 +25,7 @@ async function createPost(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.createPost(req.body),
-    message: `Created post: for user with ID: ${req.body.user_id}`,
+    message: `Created post for user with ID: ${req.body.user_id}`,
   });
 }
 

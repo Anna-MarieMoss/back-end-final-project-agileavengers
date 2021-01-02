@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node -r dotenv/config ./bin/www",
+    "start": "nodemon -r dotenv/config ./bin/www",
     "test": "jest --setupFiles dotenv/config --detectOpenHandles",
     "usersTest": "jest users.test dotenv/config --detectOpenHandles",
     "test:watch": "jest --setupFiles dotenv/config --watch",
