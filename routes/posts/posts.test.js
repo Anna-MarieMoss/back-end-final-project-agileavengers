@@ -1,5 +1,6 @@
 const app = require("../../app");
 const supertest = require("supertest");
+const { post } = require("../../app");
 const request = supertest(app);
 //const assert = require("assert"); // not sure what this is used for?
 
@@ -37,6 +38,7 @@ describe("GET /:postId", () => {
 });
 
 // TEST CREATING NEW POST
+// NEEDS SOME WORK
 
 describe("POST /posts", () => {
   it("should return the newly created Post object", async (done) => {
@@ -49,21 +51,16 @@ describe("POST /posts", () => {
       date: new Date().toDateString(),
       favorite: true,
     };
-    const response = await request.post("/posts").send(newPost);
+    const postsLength = await (await request.get("/posts").send(newPost)).body
+      .payload.length;
 
-    console.log(response.body);
+    const postResponse = await request.post("/posts").send(newPost);
 
-    expect(response.body.payload[0]).toMatchObject({
-      id: expect.any(Number),
-      user_id: newPost.user_id,
-      text: newPost.text,
-      image: newPost.image,
-      video: newPost.video,
-      audio: newPost.audio,
-      date: new Date().toDateString(),
-      favorite: newPost.favorite,
-    });
-    expect(response.status).toBe(200);
+    const newPostsLength = await (await request.get("/posts").send(newPost))
+      .body.payload.length;
+
+    expect(newPostsLength).toBe(postsLength + 1);
+    expect(postResponse.status).toBe(200);
     done();
   });
 });
