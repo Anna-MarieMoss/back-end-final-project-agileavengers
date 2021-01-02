@@ -4,12 +4,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("cors");
 
-var indexRouter = require("./routes/index");
-var postsRouter = require("./routes/posts/posts");
+var indexRouter = require("./routes/");
 var usersRouter = require("./routes/users/users");
+var postsRouter = require("./routes/posts/posts");
 var moodsRouter = require("./routes/moods/moods");
 var moodsAndPostsRouter = require("./routes/moodsAndPosts");
-var trophiesRouter = require("./routes/trophies");
+var trophiesRouter = require("./routes/trophies/trophies");
 var app = express();
 
 app.use((req, res, next) => {
