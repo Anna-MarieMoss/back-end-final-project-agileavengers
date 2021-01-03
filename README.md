@@ -12,7 +12,7 @@
 
 2. Install any node modules: **npm install**
 
-3. Run using: **npm run dev**
+3. Run using: **npm run start**
 
 4. OPTIONAL - Drop all current tables, create new tables and populate them with the seed data using: **npm run reinitialiseTables**
 
@@ -42,9 +42,17 @@
 
 **http://localhost:3000/moods**
 
-### GET all moods for a specific user with user_id
+### GET all moods for a user with user_id
 
 **http://localhost:3000/moods/userId**
+
+### GET all trophies for a user with user_id
+
+**http://localhost:3000/trophies/userId**
+
+### GET all awarded trophies for a user with user_id
+
+**http://localhost:3000/trophies/userId/awarded**
 
 ---
 
@@ -96,6 +104,18 @@ password (string),
 personality (string),
 start_date (date),
 points (integer)
+}
+```
+
+### POST a new trophy:
+
+**http://localhost:3000/trophies**
+
+```
+{
+user_id (number),
+trophy_name (string),
+awarded (boolean)
 }
 ```
 

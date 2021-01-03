@@ -9,7 +9,7 @@ var usersRouter = require("./routes/users/users");
 var postsRouter = require("./routes/posts/posts");
 var moodsRouter = require("./routes/moods/moods");
 var moodsAndPostsRouter = require("./routes/moodsAndPosts");
-
+var trophiesRouter = require("./routes/trophies/trophies");
 var app = express();
 
 app.use((req, res, next) => {
@@ -29,5 +29,6 @@ app.use("/posts", postsRouter);
 app.use("/users", usersRouter);
 app.use("/moods", moodsRouter);
 app.use("/moodsandposts", moodsAndPostsRouter);
+app.use("/trophies", trophiesRouter);
 
 module.exports = app;

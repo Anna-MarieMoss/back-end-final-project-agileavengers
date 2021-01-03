@@ -38,6 +38,7 @@ const initialTrophy = {
   id: 1,
   userId: 1,
   trophy_name: "Welcome Trophy",
+  awarded: true,
 };
 
 const initialQuote = {

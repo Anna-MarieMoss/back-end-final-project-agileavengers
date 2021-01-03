@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const trophyController = require('../../controller/trophies');
+const trophiesController = require('../../controller/trophies');
 
-/* GET trophies by ID */
-router.get('/:userId', trophyController.getTrophiesById);
+/* GET trophies by user ID */
+router.get('/:userId', trophiesController.getTrophiesById);
 
-/* GET trophies for all awarded = true; */
-router.get('/', trophyController.getTrophiesIfReceived);
+/* GET awarded trophies by user ID */
+router.get('/:userId/awarded', trophiesController.getAwardedTrophiesById);
 
 /* POST new trophy */
-router.post('/', trophyController.createTrophy);
+router.post('/', trophiesController.createTrophy);
 
 module.exports = router;
