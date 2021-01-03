@@ -19,7 +19,7 @@ async function createUser(req, res, next) {
   res.json({
     success: true,
     payload: data,
-    message: `User created with Id: ${data}`,
+    message: `User created with Id: ${data[0].id}`,
   });
 }
 

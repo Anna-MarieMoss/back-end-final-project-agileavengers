@@ -1,9 +1,9 @@
 const initialUser = {
   name: "Alice",
   email: "alice@alice.com",
-  password: "password",
-  personality: null,
-  start_date: null,
+  password: "none",
+  personality: "none",
+  start_date: "none",
   points: 0,
 };
 
@@ -11,18 +11,18 @@ const initialPost = [
   {
     userId: 1,
     text: "I love the course",
-    image: null,
-    video: null,
-    audio: null,
+    image: "none",
+    video: "none",
+    audio: "none",
     date: "2020-09-20",
     favorite: true,
   },
   {
     userId: 1,
     text: "I hate the course",
-    image: null,
-    video: null,
-    audio: null,
+    image: "none",
+    video: "none",
+    audio: "none",
     date: "2020-09-20",
     favorite: false,
   },

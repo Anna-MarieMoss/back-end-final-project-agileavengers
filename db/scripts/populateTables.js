@@ -110,7 +110,5 @@ async function populateAllTables() {
 module.exports = { populateAllTables };
 
 if (require.main === module) {
-  // populateUsersTable();
-  // populatePostsTable();
   populateAllTables();
 }

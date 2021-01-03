@@ -39,21 +39,23 @@ async function getPostsByFavorites(userId) {
 async function createPost(newPost) {
   const response = await query(
     `INSERT INTO
-      posts(user_id, 
+      posts(
+        user_id, 
         text, 
         image, 
         video, 
         audio, 
         date, 
-        favorite)
+        favorite
+        )
       VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id;`,
     [
-      newPost.userId,
-      newPost.text,
-      newPost.image,
-      newPost.video,
-      newPost.audio,
+      newPost.user_id,
+      newPost.text || "None",
+      newPost.image || "None",
+      newPost.video || "None",
+      newPost.audio || "None",
       new Date().toDateString(),
       false,
     ]
@@ -66,12 +68,27 @@ async function createPost(newPost) {
 async function updatePostByPostId(postId, updatedPost) {
   const response = await query(
     `UPDATE posts SET (
-      post,
-      multimedia,
+      text,
+      image,
+      video,
+      audio,
       favorite
-    ) = ($1, $2, $3)
-    WHERE id = $4 RETURNING *;`,
-    [updatedPost.post, updatedPost.multimedia, updatedPost.favorite, postId]
+    ) = (
+      COALESCE($1, text), 
+      COALESCE($2, image), 
+      COALESCE($3, video), 
+      COALESCE($4, audio), 
+      COALESCE($5, favorite)
+      )
+    WHERE id = $6 RETURNING *;`,
+    [
+      updatedPost.text,
+      updatedPost.image,
+      updatedPost.video,
+      updatedPost.audio,
+      updatedPost.favorite,
+      postId,
+    ]
   );
   return response.rows;
 }

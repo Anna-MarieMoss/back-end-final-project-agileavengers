@@ -60,7 +60,7 @@ describe("POST /users", () => {
       email: newUser.email,
       password: newUser.password,
       personality: newUser.personality,
-      start_date: "2020-09-19T23:00:00.000Z",
+      start_date: "2020-09-20",
       points: newUser.points,
     });
     expect(response.status).toBe(200);
