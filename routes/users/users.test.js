@@ -1,7 +1,7 @@
-const app = require("../../app");
-const supertest = require("supertest");
+const app = require('../../app');
+const supertest = require('supertest');
 const request = supertest(app);
-//const assert = require("assert"); // not sure what this is used for?
+//const assert = require('assert'); // not sure what this is used for?
 
 const someUserObject = expect.objectContaining({
   id: expect.any(Number),
@@ -17,10 +17,10 @@ const someArrayOfUserObjects = expect.arrayContaining([someUserObject]);
 
 // TEST GET ALL USERS
 
-describe("GET /users", () => {
-  it("should return all Users", async (done) => {
-    const response = await request.get("/users");
-    //console.log(response.body.payload[0] + "equals" + someUserObject);
+describe('GET /users', () => {
+  it('should return all Users', async (done) => {
+    const response = await request.get('/users');
+    //console.log(response.body.payload[0] + 'equals' + someUserObject);
     expect(response.body.payload).toStrictEqual(someArrayOfUserObjects);
     expect(response.status).toBe(200);
     done();
@@ -29,10 +29,10 @@ describe("GET /users", () => {
 
 // TEST GET USER BY ID
 
-describe("GET /users/:UserId", () => {
-  it("should return a User object", async (done) => {
-    const response = await request.get("/users/1");
-    //console.log(response.body.payload[0] + "equals" + someUserObject);
+describe('GET /users/:UserId', () => {
+  it('should return a User object', async (done) => {
+    const response = await request.get('/users/1');
+    //console.log(response.body.payload[0] + 'equals' + someUserObject);
     expect(response.body.payload[0]).toEqual(someUserObject);
     expect(response.status).toBe(200);
     done();
@@ -41,17 +41,17 @@ describe("GET /users/:UserId", () => {
 
 // TEST CREATING NEW USER
 
-describe("POST /users", () => {
-  it("should return the newly created user object", async (done) => {
+describe('POST /users', () => {
+  it('should return the newly created user object', async (done) => {
     const newUser = {
-      name: "Jeremy",
-      email: "jeremy@jeremy.com",
-      password: "password",
-      personality: "INFP",
-      start_date: "2020-09-20",
+      name: 'Jeremy',
+      email: 'jeremy@jeremy.com',
+      password: 'password',
+      personality: 'INFP',
+      start_date: '2020-09-20',
       points: 0,
     };
-    const response = await request.post("/users").send(newUser);
+    const response = await request.post('/users').send(newUser);
 
     console.log(response.body.payload[0]);
 
@@ -60,7 +60,7 @@ describe("POST /users", () => {
       email: newUser.email,
       password: newUser.password,
       personality: newUser.personality,
-      start_date: "2020-09-20",
+      start_date: '2020-09-20',
       points: newUser.points,
     });
     expect(response.status).toBe(200);
@@ -70,13 +70,13 @@ describe("POST /users", () => {
 
 // TEST UPDATING A USER
 
-describe("PATCH /users/:userId", () => {
-  it("should check that patch is updating specific user info", async (done) => {
+describe('PATCH /users/:userId', () => {
+  it('should check that patch is updating specific user info', async (done) => {
     const userId = 1;
     const updatedUser = {
-      name: "Alice",
-      email: "alice@alice.com",
-      password: "password",
+      name: 'Alice',
+      email: 'alice@alice.com',
+      password: 'password',
     };
 
     const response = await request.patch(`/users/${userId}`).send(updatedUser);
@@ -97,18 +97,18 @@ describe("PATCH /users/:userId", () => {
 
 // TEST DELETING A USER
 
-describe("DELETE /users/:userId", () => {
-  it("should delete user by id", async (done) => {
+describe('DELETE /users/:userId', () => {
+  it('should delete user by id', async (done) => {
     const newUserToBeDeleted = {
-      name: "Alice",
-      email: "alice@alice.com",
-      password: "password",
-      personality: "INFP",
-      start_date: "2020-09-20",
+      name: 'Alice',
+      email: 'alice@alice.com',
+      password: 'password',
+      personality: 'INFP',
+      start_date: '2020-09-20',
       points: 0,
     };
 
-    const postResponse = await request.post("/users").send(newUserToBeDeleted);
+    const postResponse = await request.post('/users').send(newUserToBeDeleted);
     const userIdToBeDeleted = postResponse.body.payload[0].id;
     //console.log(userIdToBeDeleted);
     await request.delete(`/users/${userIdToBeDeleted}`);

@@ -1,4 +1,4 @@
-const postsModel = require("../models/users");
+const postsModel = require('../models/users');
 
 async function getAllUsers(req, res, next) {
   res.json({
@@ -27,7 +27,7 @@ async function updateUserByUserId(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.updateUserByUserId(req.params.userId, req.body),
-    message: `Patched user: "${req.body.post}" with ID: ${req.params.userId}`,
+    message: `Patched user: '${req.body.post}' with ID: ${req.params.userId}`,
   });
 }
 

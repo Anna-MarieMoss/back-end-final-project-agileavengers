@@ -1,7 +1,7 @@
-const app = require("../../app");
-const supertest = require("supertest");
+const app = require('../../app');
+const supertest = require('supertest');
 const request = supertest(app);
-//const assert = require("assert"); // not sure what this is used for?
+//const assert = require('assert'); // not sure what this is used for?
 
 const someMoodObject = expect.objectContaining({
   id: expect.any(Number),
@@ -14,9 +14,9 @@ const someArrayOfMoodObjects = expect.arrayContaining([someMoodObject]);
 
 // TEST GET ALL MOODS
 
-describe("GET /moods", () => {
-  it("should return all Moods", async (done) => {
-    const response = await request.get("/moods");
+describe('GET /moods', () => {
+  it('should return all Moods', async (done) => {
+    const response = await request.get('/moods');
     expect(response.body.payload).toStrictEqual(someArrayOfMoodObjects);
     expect(response.status).toBe(200);
     done();
@@ -25,9 +25,9 @@ describe("GET /moods", () => {
 
 // TEST GET MOOD BY ID
 
-describe("GET /moods/:moodId", () => {
-  it("should return all moods for a certain user", async (done) => {
-    const response = await request.get("/moods/1");
+describe('GET /moods/:moodId', () => {
+  it('should return all moods for a certain user', async (done) => {
+    const response = await request.get('/moods/1');
     expect(response.body.payload[0]).toEqual(someMoodObject);
     expect(response.status).toBe(200);
     done();
@@ -37,18 +37,18 @@ describe("GET /moods/:moodId", () => {
 // TEST CREATING NEW Mood
 // NEEDS SOME WORK
 
-describe("POST /moods", () => {
-  it("should return the newly created Mood object", async (done) => {
+describe('POST /moods', () => {
+  it('should return the newly created Mood object', async (done) => {
     const newMood = {
       user_id: 1,
       mood: 5,
     };
-    const getAllMoodsResponse = await request.get("/moods");
+    const getAllMoodsResponse = await request.get('/moods');
     const numOfMoods = getAllMoodsResponse.body.payload.length;
 
-    const MoodResponse = await request.post("/moods").send(newMood);
+    const MoodResponse = await request.post('/moods').send(newMood);
 
-    const newGetAllMoodsResponse = await request.get("/moods");
+    const newGetAllMoodsResponse = await request.get('/moods');
     const newNumOfMoods = newGetAllMoodsResponse.body.payload.length;
 
     expect(newNumOfMoods).toBe(numOfMoods + 1);
@@ -61,14 +61,14 @@ describe("POST /moods", () => {
 
 // TEST DELETING A Mood
 
-describe("DELETE /moods/:moodId", () => {
-  it("should delete Mood by id", async (done) => {
+describe('DELETE /moods/:moodId', () => {
+  it('should delete Mood by id', async (done) => {
     const newMoodToBeDeleted = {
       user_id: 1,
       mood: 5,
     };
 
-    const MoodResponse = await request.post("/moods").send(newMoodToBeDeleted);
+    const MoodResponse = await request.post('/moods').send(newMoodToBeDeleted);
     const moodIdToBeDeleted = MoodResponse.body.payload[0].id;
     await request.delete(`/moods/${moodIdToBeDeleted}`);
     const getResponse = await request.get(`/moods/${moodIdToBeDeleted}`);

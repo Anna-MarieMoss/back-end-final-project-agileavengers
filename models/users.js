@@ -1,4 +1,4 @@
-const { query } = require("../db/index");
+const { query } = require('../db/index');
 
 /* GET ALL USERS */
 
@@ -37,9 +37,9 @@ async function createUser(newUser) {
     [
       newUser.name,
       newUser.email,
-      newUser.password || "none",
-      newUser.personality || "none",
-      newUser.start_date || "none",
+      newUser.password || 'none',
+      newUser.personality || 'none',
+      newUser.start_date || 'none',
       0,
     ]
   );

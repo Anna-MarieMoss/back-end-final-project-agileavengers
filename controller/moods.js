@@ -18,7 +18,7 @@ async function createMood(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.createMood(req.body),
-    message: `Added mood entry with mood: "${req.body.mood}"`,
+    message: `Added mood entry with mood: '${req.body.mood}'`,
   });
 }
 

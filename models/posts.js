@@ -1,4 +1,4 @@
-const { query } = require("../db/index");
+const { query } = require('../db/index');
 
 /* GET ALL POSTS FOR ALL USERS */
 
@@ -52,10 +52,10 @@ async function createPost(newPost) {
       RETURNING id;`,
     [
       newPost.user_id,
-      newPost.text || "None",
-      newPost.image || "None",
-      newPost.video || "None",
-      newPost.audio || "None",
+      newPost.text || 'None',
+      newPost.image || 'None',
+      newPost.video || 'None',
+      newPost.audio || 'None',
       new Date().toDateString(),
       false,
     ]
