@@ -39,9 +39,10 @@ async function createMoodsTable() {
 
 async function createTrophiesTable() {
   let res = await query(`CREATE TABLE trophies (
-      id SERIAL PRIMARY KEY NOT NULL,
+      id SERIAL PRIMARY KEY,
       user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL,
       trophy_name TEXT,
+      trophy_img TEXT,
       awarded BOOLEAN
   )`);
   console.log(res);

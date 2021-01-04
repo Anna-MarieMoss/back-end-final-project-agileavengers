@@ -71,9 +71,10 @@ async function populateTrophiesTable() {
     `INSERT INTO trophies(
           user_id,
           trophy_name,
+          trophy_img,
           awarded
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialTrophy.userId, initialTrophy.trophy_name, initialTrophy.awarded]
+    [initialTrophy.userId, initialTrophy.trophyName, initialTrophy.trophyImg, initialTrophy.awarded]
   );
 }
 

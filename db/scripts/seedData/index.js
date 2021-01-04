@@ -35,9 +35,9 @@ const initialMood = {
 };
 
 const initialTrophy = {
-  id: 1,
   userId: 1,
-  trophy_name: "Welcome Trophy",
+  trophyName: "Welcome Trophy",
+  trophyImg: null,
   awarded: true,
 };
 

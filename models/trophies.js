@@ -9,7 +9,7 @@ async function getTrophiesById(userId) {
           ORDER BY id;`,
         [userId]
       );
-  return response;
+  return response.rows;
 }
 
 //GET all trophies awarded for a user
@@ -21,21 +21,35 @@ async function getAwardedTrophiesById(userId) {
         ORDER BY id;`,
       [userId]
     );
-  return response
+  return response.rows;
 }
 //POST a new trophy
 
 async function createTrophy(newTrophy) {
   const response = await query(
     `INSERT INTO 
-      trophies(user_id, trophy_name, awarded)
+      trophies(user_id, trophy_name, trophy_img, awarded)
       VALUES ($1, $2, $3)
       RETURNING id;`,
     [
-      newTrophy.user_id,
-      newTrophy.trophy_name,
+      newTrophy.userId,
+      newTrophy.trophyName,
+      newTrophy.trophyImg,
       newTrophy.awarded
     ]
+  );
+  return response.rows;
+}
+
+/* EDIT AN EXISTING TROPHY FOR A USER */
+
+async function updateTrophyByTrophyId(trophyId) {
+  const response = await query(
+    `UPDATE trophies 
+     SET awarded = NOT awarded 
+     WHERE id = $1
+     RETURNING *;`,
+    [trophyId]
   );
   return response.rows;
 }
@@ -43,5 +57,6 @@ async function createTrophy(newTrophy) {
 module.exports = {
   getTrophiesById,
   getAwardedTrophiesById,
-  createTrophy
+  createTrophy,
+  updateTrophyByTrophyId
 };
