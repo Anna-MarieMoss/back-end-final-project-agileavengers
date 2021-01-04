@@ -1,6 +1,5 @@
 const app = require("../../app");
 const supertest = require("supertest");
-const { post } = require("../../app");
 const request = supertest(app);
 //const assert = require("assert"); // not sure what this is used for?
 
@@ -19,22 +18,20 @@ const someArrayOfPostObjects = expect.arrayContaining([somePostObject]);
 
 // TEST GET ALL POSTS
 
-describe("GET /", () => {
+describe("GET /posts", () => {
   it("should return all posts", async (done) => {
     const response = await request.get("/posts");
-    //console.log(response.body.payload[0] + "equals" + somePostObject);
     expect(response.body.payload).toStrictEqual(someArrayOfPostObjects);
     expect(response.status).toBe(200);
     done();
   });
 });
 
-// TEST GET POST BY ID
+// TEST GET POSTS BY USER ID
 
-describe("GET /:postId", () => {
-  it("should return a Post object", async (done) => {
+describe("GET /posts/:userId", () => {
+  it("should return posts for certain user", async (done) => {
     const response = await request.get("/posts/1");
-    //console.log(response.body.payload[0] + "equals" + somePostObject);
     expect(response.body.payload[0]).toEqual(somePostObject);
     expect(response.status).toBe(200);
     done();
@@ -96,8 +93,8 @@ describe("PATCH /posts/:postId", () => {
 
 // TEST DELETING A POST
 
-describe("DELETE /Posts/:postId", () => {
-  it("should delete Post by id", async (done) => {
+describe("DELETE /posts/:postId", () => {
+  it("should delete post by id", async (done) => {
     const newPostToBeDeleted = {
       user_id: 1,
       name: "Alice",

@@ -17,7 +17,7 @@ const someArrayOfUserObjects = expect.arrayContaining([someUserObject]);
 
 // TEST GET ALL USERS
 
-describe("GET /", () => {
+describe("GET /users", () => {
   it("should return all Users", async (done) => {
     const response = await request.get("/users");
     //console.log(response.body.payload[0] + "equals" + someUserObject);
@@ -29,7 +29,7 @@ describe("GET /", () => {
 
 // TEST GET USER BY ID
 
-describe("GET /:UserId", () => {
+describe("GET /users/:UserId", () => {
   it("should return a User object", async (done) => {
     const response = await request.get("/users/1");
     //console.log(response.body.payload[0] + "equals" + someUserObject);

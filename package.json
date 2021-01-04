@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nodemon -r dotenv/config ./bin/www",
     "test": "jest --setupFiles dotenv/config --detectOpenHandles",
-    "usersTest": "jest users.test dotenv/config --detectOpenHandles",
+    "usersTest": "jest --setupFiles dotenv/config --detectOpenHandles users.test",
+    "postsTest": "jest --setupFiles dotenv/config --detectOpenHandles posts.test",
+    "moodsTest": "jest --setupFiles dotenv/config --detectOpenHandles moods.test",
     "test:watch": "jest --setupFiles dotenv/config --watch",
     "createTables": "node -r dotenv/config ./db/scripts/createTables.js",
     "dropTables": "node -r dotenv/config ./db/scripts/dropTables.js",
