@@ -65,9 +65,6 @@ async function getPostsByFavorites(userId) {
 /////
 async function createPost(newPost) {
   console.log(`text= ${newPost.text}`);
-  // console.log(`image size= ${newPost.image.length}`);
-  // console.log(`video size= ${newPost.video.length}`);
-  // console.log(`audio size= ${newPost.audio.length}`);
 
   try {
     let urlImage = '';
