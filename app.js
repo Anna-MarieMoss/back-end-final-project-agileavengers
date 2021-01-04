@@ -19,8 +19,8 @@ app.use((req, res, next) => {
 
 app.use(logger('dev'));
 
-app.use(express.json({ limit: '50mb' })); // added limit code
-app.use(express.urlencoded({ limit: '50mb', extended: true })); // added limit code and changed extended to true
+app.use(express.json({ limit: '200mb' })); // added limit code
+app.use(express.urlencoded({ limit: '200mb', extended: true })); // added limit code and changed extended to true
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,6 +33,5 @@ app.use('/moods', moodsRouter);
 app.use('/moodsandposts', moodsAndPostsRouter);
 
 app.use('/trophies', trophiesRouter);
-
 
 module.exports = app;
