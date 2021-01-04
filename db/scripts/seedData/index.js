@@ -1,9 +1,9 @@
 const initialUser = {
   name: 'Alice',
   email: 'alice@alice.com',
-  password: 'password',
-  personality: 'INFP',
-  start_date: '2020-09-20',
+  password: 'none',
+  personality: 'none',
+  start_date: 'none',
   points: 0,
 };
 
@@ -11,18 +11,18 @@ const initialPost = [
   {
     userId: 1,
     text: 'I love the course',
-    image: null,
-    video: null,
-    audio: null,
+    image: 'none',
+    video: 'none',
+    audio: 'none',
     date: '2020-09-20',
     favorite: true,
   },
   {
     userId: 1,
     text: 'I hate the course',
-    image: null,
-    video: null,
-    audio: null,
+    image: 'none',
+    video: 'none',
+    audio: 'none',
     date: '2020-09-20',
     favorite: false,
   },
@@ -35,16 +35,17 @@ const initialMood = {
 };
 
 const initialTrophy = {
-  id: 1,
   userId: 1,
-  trophy_name: 'Welcome Trophy',
+  trophyName: 'Welcome Trophy',
+  trophyImg: null,
+  awarded: true,
 };
 
 const initialQuote = {
   id: 1,
   userId: 1,
   quote:
-    "Try not to be so positional on your stance when working in teams, it's good to stay open minded to other's opinions and ideas.",
+    'Try not to be so positional on your stance when working in teams, it's good to stay open minded to other's opinions and ideas.',
   date: '20/09/2020',
 };
 

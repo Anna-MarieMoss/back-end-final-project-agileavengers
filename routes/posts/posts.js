@@ -9,7 +9,7 @@ const postsController = require('../../controller/posts');
 /* GET all posts */
 router.get('/', postsController.getAllPosts);
 
-/* GET post by ID */
+/* GET post by User ID */
 router.get('/:userId', postsController.getPostById);
 
 /* GET post by ID and favorites */

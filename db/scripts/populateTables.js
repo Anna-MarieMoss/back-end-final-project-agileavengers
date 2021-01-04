@@ -1,4 +1,4 @@
-const { query } = require("../index");
+const { query } = require('../index');
 
 const {
   initialUser,
@@ -7,7 +7,7 @@ const {
   initialTrophy,
   initialQuote,
   initialNotification,
-} = require("./seedData");
+} = require('./seedData');
 
 async function populateUsersTable() {
   await query(
@@ -62,7 +62,7 @@ async function populateMoodsTable() {
           mood,
           date
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialMood.userId, initialMood.mood, "1/1/2020"]
+    [initialMood.userId, initialMood.mood, '1/1/2020']
   );
 }
 
@@ -71,9 +71,15 @@ async function populateTrophiesTable() {
     `INSERT INTO trophies(
           user_id,
           trophy_name,
+          trophy_img,
           awarded
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialTrophy.userId, initialTrophy.trophy_name, initialTrophy.awarded]
+    [
+      initialTrophy.userId,
+      initialTrophy.trophyName,
+      initialTrophy.trophyImg,
+      initialTrophy.awarded,
+    ]
   );
 }
 
@@ -104,13 +110,11 @@ async function populateAllTables() {
   await populateTrophiesTable();
   await populateQuotesTable();
   await populateNotificationsTable();
-  console.log("Tables should be populated now.");
+  console.log('Tables should be populated now.');
 }
 
 module.exports = { populateAllTables };
 
 if (require.main === module) {
-  // populateUsersTable();
-  // populatePostsTable();
   populateAllTables();
 }

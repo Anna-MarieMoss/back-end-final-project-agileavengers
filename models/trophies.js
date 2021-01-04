@@ -1,17 +1,6 @@
 const { query } = require('../db/index');
 
-
-// GET all awarded trophies
-async function getTrophiesIfReceived() {
-  const response = await query(
-    `SELECT * FROM trophies
-      WHERE awarded = true
-      ORDER BY id;`
-  );
-  return response.rows;
-}
-
-//GET all trophies (awarded and not awarded) for a user
+//GET all trophies for a user (whether awarded or not)
 
 async function getTrophiesById(userId) {
     const response = await query(
@@ -20,26 +9,54 @@ async function getTrophiesById(userId) {
           ORDER BY id;`,
         [userId]
       );
-      return response.rows;
+  return response.rows;
 }
 
+//GET all trophies awarded for a user
+
+async function getAwardedTrophiesById(userId) {
+  const response = await query(
+      `SELECT * FROM trophies
+        WHERE user_id = $1 AND awarded = true
+        ORDER BY id;`,
+      [userId]
+    );
+  return response.rows;
+}
 //POST a new trophy
 
 async function createTrophy(newTrophy) {
   const response = await query(
-    `INSERT INTO
-        trophies(user_id, trophy_name, awarded)
-        VALUES ($1,$2,$3)
-        RETURNING id;`,
-    [newTrophy.user_id, newTrophy.trophy_name, newTrophy.awarded]
+    `INSERT INTO 
+      trophies(user_id, trophy_name, trophy_img, awarded)
+      VALUES ($1, $2, $3)
+      RETURNING id;`,
+    [
+      newTrophy.userId,
+      newTrophy.trophyName,
+      newTrophy.trophyImg,
+      newTrophy.awarded
+    ]
+  );
+  return response.rows;
+}
+
+/* EDIT AN EXISTING TROPHY FOR A USER */
+
+async function updateTrophyByTrophyId(trophyId) {
+  const response = await query(
+    `UPDATE trophies 
+     SET awarded = NOT awarded 
+     WHERE id = $1
+     RETURNING *;`,
+    [trophyId]
   );
   return response.rows;
 }
 
 module.exports = {
   getTrophiesById,
-  getTrophiesIfReceived,
-  createTrophy
+  getAwardedTrophiesById,
+  createTrophy,
+  updateTrophyByTrophyId
 };
-
-
