@@ -8,7 +8,7 @@ async function getMoodsAndPostsById(userId) {
         ON posts.user_id = moods.user_id
         AND posts.date = moods.date
         WHERE posts.user_id = $1
-        ORDER BY posts.date;`,
+        ORDER BY posts.id DESC;`,
     [userId]
   );
   return response.rows;
