@@ -12,12 +12,12 @@ async function getAllUsers() {
 
 /* GET USER BY ID */
 
-async function getUserById(userId) {
+async function getUserByEmail(email) {
   const response = await query(
     `SELECT * FROM users
-        WHERE id = $1
+        WHERE email = $1
         ORDER BY id;`,
-    [userId]
+    [email]
   );
   return response.rows;
 }
@@ -93,7 +93,7 @@ async function deleteUserById(userId) {
 
 module.exports = {
   getAllUsers,
-  getUserById,
+  getUserByEmail,
   createUser,
   updateUserByUserId,
   deleteUserById,

@@ -32,7 +32,7 @@ const trophyTable = [
     {
       trophyName: 'SQL',
       trophyImg: null,
-      awarded: true,
+      awarded: false,
     },
     {
       trophyName: 'Postman',
@@ -61,6 +61,4 @@ const trophyTable = [
     }
   ];
 
-  module.exports = {
-    trophyTable
-  };
+module.exports = {trophyTable};

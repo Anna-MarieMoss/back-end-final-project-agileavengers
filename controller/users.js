@@ -9,23 +9,24 @@ async function getAllUsers(req, res, next) {
   });
 }
 
-async function getUserById(req, res, next) {
+async function getUserByEmail(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.getUserById(req.params.userId),
+    payload: await postsModel.getUserByEmail(req.params.email),
   });
 }
 
 async function createUser(req, res, next) {
-  const data = await postsModel.createUser(req.body); // add function for creating trophies table all trophies for that user w awarded false
-  res.json({
+  const data = await postsModel.createUser(req.body);
+   // add function for creating trophies table all trophies for that user w awarded false
+  const userId = data[0].id;
+  console.log(trophyTable);
+  const createTrophies = await trophyModel.createTrophyTable(trophyTable.trophyTable, userId);
+   res.json({
     success: true,
-    payload: data,
-    message: `User created with Id: ${data[0].id}`,
+    payload: data, 
+    message: `User created with Id: ${data[0].id} and created trophies ${JSON.stringify(createTrophies)}`,
   });
-  // const user = data[0].id;
-  // const createTrophies = trophyModel.createTrophyTable(trophyTable, user);
-  // console.log(createTrophies);
 };
 
 async function updateUserByUserId(req, res, next) {
@@ -46,7 +47,7 @@ async function deleteUserById(req, res, next) {
 
 module.exports = {
   getAllUsers,
-  getUserById,
+  getUserByEmail,
   createUser,
   updateUserByUserId,
   deleteUserById,
