@@ -2,8 +2,8 @@ const { query } = require('../index');
 
 const {
   initialUser,
-  initialPost,
-  initialMood,
+  initialPosts,
+  initialMoods,
   initialTrophy,
   initialQuote,
   initialNotification,
@@ -31,7 +31,7 @@ async function populateUsersTable() {
 }
 
 async function populatePostsTable() {
-  for (const post of initialPost) {
+  for (const post of initialPosts) {
     await query(
       `INSERT INTO posts(
           user_id,
@@ -56,14 +56,16 @@ async function populatePostsTable() {
 }
 
 async function populateMoodsTable() {
-  await query(
-    `INSERT INTO moods(
+  for (const mood of initialMoods) {
+    await query(
+      `INSERT INTO moods(
           user_id,
           mood,
           date
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialMood.userId, initialMood.mood, '1/1/2020']
-  );
+      [mood.userId, mood.mood, mood.date]
+    );
+  }
 }
 
 async function populateTrophiesTable() {
@@ -73,7 +75,7 @@ async function populateTrophiesTable() {
           trophy_name,
           trophy_img,
           awarded
-        ) VALUES ($1, $2, $3) RETURNING *;`,
+        ) VALUES ($1, $2, $3, $4) RETURNING *;`,
     [
       initialTrophy.userId,
       initialTrophy.trophyName,

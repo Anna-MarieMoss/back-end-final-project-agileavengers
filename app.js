@@ -26,15 +26,12 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://dev-ip1x4wr7.eu.auth0.com/api/v2//.well-known/jwks.json`,
+    jwksUri: `https://dev-ip1x4wr7.eu.auth0.com/.well-known/jwks.json`,
   }),
 
   // Validate the audience and the issuer.
-  aud: [
-    'https://dev-ip1x4wr7.eu.auth0.com/api/v2/',
-    'https://dev-ip1x4wr7.eu.auth0.com/userinfo',
-  ],
-  iss: `dev-ip1x4wr7.eu.auth0.com`,
+  aud: ['https://dev-ip1x4wr7.eu.auth0.com/api/v2/'],
+  iss: `https://dev-ip1x4wr7.eu.auth0.com/`,
   algorithms: ['RS256'],
 });
 

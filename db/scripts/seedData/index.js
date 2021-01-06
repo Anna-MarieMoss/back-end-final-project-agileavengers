@@ -7,7 +7,7 @@ const initialUser = {
   points: 0,
 };
 
-const initialPost = [
+const initialPosts = [
   {
     userId: 1,
     text: 'I love the course',
@@ -28,11 +28,58 @@ const initialPost = [
   },
 ];
 
-const initialMood = {
-  userId: 1,
-  mood: 5,
-  date: '2020-09-20',
-};
+const initialMoods = [
+  {
+    userId: 1,
+    mood: 5,
+    date: '2020-09-20',
+  },
+  {
+    userId: 1,
+    mood: 3,
+    date: '2020-09-21',
+  },
+  {
+    userId: 1,
+    mood: 2,
+    date: '2020-09-22',
+  },
+  {
+    userId: 1,
+    mood: 4,
+    date: '2020-09-23',
+  },
+  {
+    userId: 1,
+    mood: 2,
+    date: '2020-09-24',
+  },
+  {
+    userId: 1,
+    mood: 1,
+    date: '2020-09-25',
+  },
+  {
+    userId: 1,
+    mood: 4,
+    date: '2020-09-26',
+  },
+  {
+    userId: 1,
+    mood: 5,
+    date: '2020-09-27',
+  },
+  {
+    userId: 1,
+    mood: 3,
+    date: '2020-09-28',
+  },
+  {
+    userId: 1,
+    mood: 2,
+    date: '2020-09-29',
+  },
+];
 
 const initialTrophy = {
   userId: 1,
@@ -45,7 +92,7 @@ const initialQuote = {
   id: 1,
   userId: 1,
   quote:
-    'Try not to be so positional on your stance when working in teams, it's good to stay open minded to other's opinions and ideas.',
+    'Try not to be so positional on your stance when working in teams, it is good to stay open minded to other opinions and ideas.',
   date: '20/09/2020',
 };
 
@@ -57,8 +104,8 @@ const initialNotification = {
 
 module.exports = {
   initialUser,
-  initialPost,
-  initialMood,
+  initialPosts,
+  initialMoods,
   initialTrophy,
   initialQuote,
   initialNotification,
