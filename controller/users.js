@@ -12,7 +12,7 @@ async function getAllUsers(req, res, next) {
 async function getUserByEmail(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.getUserByEmail(req.params.userId),
+    payload: await postsModel.getUserByEmail(req.params.email),
   });
 }
 
@@ -26,7 +26,7 @@ async function createUser(req, res, next) {
   // const user = data[0].id;
   // const createTrophies = trophyModel.createTrophyTable(trophyTable, user);
   // console.log(createTrophies);
-};
+}
 
 async function updateUserByUserId(req, res, next) {
   res.json({
