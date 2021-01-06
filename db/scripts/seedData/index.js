@@ -81,12 +81,80 @@ const initialMoods = [
   },
 ];
 
-const initialTrophy = {
-  userId: 1,
-  trophyName: 'Welcome Trophy',
-  trophyImg: null,
-  awarded: true,
-};
+const initialTrophy = [
+  {
+    userId: 1,
+    trophyName: 'Github',
+    trophyImg: null,
+    awarded: true,
+  },
+  {
+    userId: 1,
+    trophyName: 'HTML',
+    trophyImg: null,
+    awarded: true,
+  },
+  {
+    userId: 1,
+    trophyName: 'VSCode',
+    trophyImg: null,
+    awarded: true,
+  },
+  {
+    userId: 1,
+    trophyName: 'JavaScript',
+    trophyImg: null,
+    awarded: true,
+  },
+  {
+    userId: 1,
+    trophyName: 'CSS',
+    trophyImg: null,
+    awarded: false,
+  },
+  {
+    userId: 1,
+    trophyName: 'Trello',
+    trophyImg: null,
+    awarded: false,
+  },
+  {
+    userId: 1,
+    trophyName: 'SQL',
+    trophyImg: null,
+    awarded: true,
+  },
+  {
+    userId: 1,
+    trophyName: 'Postman',
+    trophyImg: null,
+    awarded: true,
+  },
+  {
+    userId: 1,
+    trophyName: 'Jest',
+    trophyImg: null,
+    awarded: false,
+  },
+  {
+    userId: 1,
+    trophyName: 'React',
+    trophyImg: null,
+    awarded: true,
+  },
+  {
+    userId: 1,
+    trophyName: 'Docker',
+    trophyImg: null,
+    awarded: false,
+  },
+  {
+    userId: 1,
+    trophyName: 'AWS',
+    trophyImg: null,
+    awarded: false,
+  }
+];
 
 const initialQuote = {
   id: 1,
