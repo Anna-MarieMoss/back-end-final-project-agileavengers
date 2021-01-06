@@ -1,14 +1,28 @@
 const { query } = require('../db/index');
 
+/* GET ALL USERS */
+
+async function getAllUsers() {
+  const response = await query(
+    `SELECT * FROM users
+        ORDER BY id;`
+  );
+  return response.rows;
+}
+
+/* GET USER BY ID */
+
 async function getUserById(userId) {
   const response = await query(
-    `SELECT * FROM posts
-        WHERE user_id = $1
-        ORDER BY date;`,
+    `SELECT * FROM users
+        WHERE id = $1
+        ORDER BY id;`,
     [userId]
   );
   return response.rows;
 }
+
+/* CREATE A NEW USER */
 
 async function createUser(newUser) {
   const response = await query(
@@ -23,16 +37,64 @@ async function createUser(newUser) {
     [
       newUser.name,
       newUser.email,
-      newUser.password,
-      newUser.personality,
-      newUser.start_date,
-      newUser.points,
+      newUser.password || 'none',
+      newUser.personality || 'none',
+      newUser.start_date || 'none',
+      0,
     ]
   );
   return response.rows;
 }
 
+/* UPDATE USER BY ID*/
+
+async function updateUserByUserId(userId, updatedUser) {
+  const response = await query(
+    `UPDATE users SET (
+      name,
+      email,
+      password,
+      personality,
+      start_date,
+      points
+    ) = (
+      COALESCE($1, name),
+      COALESCE($2, email),
+      COALESCE($3, password),
+      COALESCE($4, personality),
+      COALESCE($5, start_date),
+      COALESCE($6, points)
+      )
+    WHERE id = $7 RETURNING *;`,
+    [
+      updatedUser.name,
+      updatedUser.email,
+      updatedUser.password,
+      updatedUser.personality,
+      updatedUser.start_date,
+      updatedUser.points,
+      userId,
+    ]
+  );
+  return response.rows;
+}
+
+/* DELETE USER BY ID */
+
+async function deleteUserById(userId) {
+  const response = await query(
+    `DELETE FROM users
+     WHERE id = $1
+     RETURNING id;`,
+    [userId]
+  );
+  return response.rows.id;
+}
+
 module.exports = {
+  getAllUsers,
   getUserById,
   createUser,
+  updateUserByUserId,
+  deleteUserById,
 };

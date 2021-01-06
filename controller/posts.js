@@ -10,7 +10,7 @@ async function getAllPosts(req, res, next) {
 async function getPostById(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.getPostsById(req.params.userId),
+    payload: await postsModel.getPostById(req.params.userId),
   });
 }
 
@@ -25,7 +25,15 @@ async function createPost(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.createPost(req.body),
-    message: `Created post: "${req.body.post}"`,
+    message: `Created post for user with ID: ${req.body.user_id}`,
+  });
+}
+
+async function updatePostByPostId(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.updatePostByPostId(req.params.postId, req.body),
+    message: `Patched post with ID: ${req.params.postId}`,
   });
 }
 
@@ -33,7 +41,7 @@ async function deletePostByPostId(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.deletePostByPostId(req.params.postId),
-    message: `Deleted note with ID: ${req.params.postId}`,
+    message: `Deleted post with ID: ${req.params.postId}`,
   });
 }
 
@@ -42,5 +50,6 @@ module.exports = {
   getPostById,
   getPostsByFavorites,
   createPost,
+  updatePostByPostId,
   deletePostByPostId,
 };

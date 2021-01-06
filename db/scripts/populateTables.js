@@ -2,8 +2,8 @@ const { query } = require('../index');
 
 const {
   initialUser,
-  initialPost,
-  initialMood,
+  initialPosts,
+  initialMoods,
   initialTrophy,
   initialQuote,
   initialNotification,
@@ -31,29 +31,41 @@ async function populateUsersTable() {
 }
 
 async function populatePostsTable() {
-  for (const post of initialPost) {
+  for (const post of initialPosts) {
     await query(
       `INSERT INTO posts(
           user_id,
-          post,
-          multimedia,
+          text,
+          image,
+          video,
+          audio,
           date,
           favorite
-        ) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
-      [post.userId, post.post, post.multimedia, post.date, post.favorite]
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`,
+      [
+        post.userId,
+        post.text,
+        post.image,
+        post.video,
+        post.audio,
+        new Date().toDateString(),
+        post.favorite,
+      ]
     );
   }
 }
 
 async function populateMoodsTable() {
-  await query(
-    `INSERT INTO moods(
+  for (const mood of initialMoods) {
+    await query(
+      `INSERT INTO moods(
           user_id,
           mood,
           date
         ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialMood.userId, initialMood.mood, initialMood.date]
-  );
+      [mood.userId, mood.mood, mood.date]
+    );
+  }
 }
 
 async function populateTrophiesTable() {
@@ -61,9 +73,15 @@ async function populateTrophiesTable() {
     `INSERT INTO trophies(
           user_id,
           trophy_name,
+          trophy_img,
           awarded
-        ) VALUES ($1, $2, $3) RETURNING *;`,
-    [initialTrophy.userId, initialTrophy.trophy_name, initialTrophy.awarded]
+        ) VALUES ($1, $2, $3, $4) RETURNING *;`,
+    [
+      initialTrophy.userId,
+      initialTrophy.trophyName,
+      initialTrophy.trophyImg,
+      initialTrophy.awarded,
+    ]
   );
 }
 
@@ -100,7 +118,5 @@ async function populateAllTables() {
 module.exports = { populateAllTables };
 
 if (require.main === module) {
-  // populateUsersTable();
-  // populatePostsTable();
   populateAllTables();
 }
