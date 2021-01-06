@@ -50,9 +50,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', indexRouter);
-app.use('/posts', postsRouter);
-app.use('/users', usersRouter);
-app.use('/moods', moodsRouter);
+app.use('/posts', checkJwt, postsRouter);
+app.use('/users', checkJwt, usersRouter);
+app.use('/moods', checkJwt, moodsRouter);
 app.use('/moodsandposts', moodsAndPostsRouter);
 app.use('/trophies', trophiesRouter);
 module.exports = app;
