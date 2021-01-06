@@ -30,7 +30,7 @@ const checkJwt = jwt({
   }),
 
   // Validate the audience and the issuer.
-  aud: ['https://dev-ip1x4wr7.eu.auth0.com/api/v2/'],
+  aud: 'https://dev-ip1x4wr7.eu.auth0.com/api/v2/',
   iss: `https://dev-ip1x4wr7.eu.auth0.com/`,
   algorithms: ['RS256'],
 });
@@ -50,8 +50,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', indexRouter);
-app.use('/posts', checkJwt, postsRouter);
-app.use('/users', checkJwt, usersRouter);
+app.use('/posts', postsRouter);
+app.use('/users', usersRouter);
 app.use('/moods', moodsRouter);
 app.use('/moodsandposts', moodsAndPostsRouter);
 app.use('/trophies', trophiesRouter);
