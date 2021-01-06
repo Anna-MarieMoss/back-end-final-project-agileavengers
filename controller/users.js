@@ -12,7 +12,7 @@ async function getAllUsers(req, res, next) {
 async function getUserByEmail(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.getUserByEmail(req.params.userId),
+    payload: await postsModel.getUserByEmail(req.params.email),
   });
 }
 

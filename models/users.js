@@ -15,7 +15,7 @@ async function getAllUsers() {
 async function getUserByEmail(email) {
   const response = await query(
     `SELECT * FROM users
-        WHERE id = $1
+        WHERE email = $1
         ORDER BY id;`,
     [email]
   );
