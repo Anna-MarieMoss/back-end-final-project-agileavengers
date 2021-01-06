@@ -26,19 +26,24 @@ async function getAwardedTrophiesById(userId) {
 
 //POST all trophies as false for new user
 async function createTrophyTable(trophyTable, userId){
-  const response = await query(
+  let arr = []
+  for (const trophy of trophyTable){
+    const response = 
+    await query(
     `INSERT INTO
      trophies(user_id, trophy_name, trophy_img, awarded)
-     VALUES ($1, $2, $3)
-     RETURNING id;`,
+     VALUES ($1, $2, $3, $4)
+     RETURNING *;`,
     [
       userId,
-      trophyTable.trophyName,
-      trophyTable.trophyImg,
-      trophyTable.awarded
+      trophy.trophyName,
+      trophy.trophyImg,
+      trophy.awarded
     ]
   );
-  return response.rows;
+  arr.push(response.rows[0].trophy_name);
+  };
+  return arr;
 }
 
 //POST a new trophy
