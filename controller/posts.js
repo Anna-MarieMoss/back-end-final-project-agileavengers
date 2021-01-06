@@ -25,7 +25,7 @@ async function createPost(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.createPost(req.body),
-    message: `Created post: for user with ID: ${req.body.user_id}`,
+    message: `Created post for user with ID: ${req.body.user_id}`,
   });
 }
 
@@ -33,7 +33,7 @@ async function updatePostByPostId(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.updatePostByPostId(req.params.postId, req.body),
-    message: `Patched post: for user with ID: ${req.params.user_id}`,
+    message: `Patched post with ID: ${req.params.postId}`,
   });
 }
 
@@ -41,7 +41,7 @@ async function deletePostByPostId(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.deletePostByPostId(req.params.postId),
-    message: `Deleted note with ID: ${req.params.postId}`,
+    message: `Deleted post with ID: ${req.params.postId}`,
   });
 }
 
