@@ -3,7 +3,7 @@ const initialUser = {
   email: 'alice@alice.com',
   password: 'none',
   personality: 'none',
-  start_date: 'none',
+  startDate: 'none',
   points: 0,
 };
 

@@ -1,4 +1,6 @@
 const postsModel = require('../models/users');
+const trophyModel = require('../models/trophies');
+const trophyTable = require('../db/scripts/trophyTableData');
 
 async function getAllUsers(req, res, next) {
   res.json({
@@ -7,21 +9,25 @@ async function getAllUsers(req, res, next) {
   });
 }
 
-async function getUserById(req, res, next) {
+async function getUserByEmail(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.getUserById(req.params.userId),
+    payload: await postsModel.getUserByEmail(req.params.email),
   });
 }
 
 async function createUser(req, res, next) {
   const data = await postsModel.createUser(req.body);
-  res.json({
+   // add function for creating trophies table all trophies for that user w awarded false
+  const userId = data[0].id;
+  console.log(trophyTable);
+  const createTrophies = await trophyModel.createTrophyTable(trophyTable.trophyTable, userId);
+   res.json({
     success: true,
-    payload: data,
-    message: `User created with Id: ${data[0].id}`,
+    payload: data, 
+    message: `User created with Id: ${data[0].id} and created trophies ${JSON.stringify(createTrophies)}`,
   });
-}
+};
 
 async function updateUserByUserId(req, res, next) {
   res.json({
@@ -41,7 +47,7 @@ async function deleteUserById(req, res, next) {
 
 module.exports = {
   getAllUsers,
-  getUserById,
+  getUserByEmail,
   createUser,
   updateUserByUserId,
   deleteUserById,

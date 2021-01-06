@@ -6,8 +6,8 @@ const usersController = require('../../controller/users');
 /* GET all users */
 router.get('/', usersController.getAllUsers);
 
-/* GET user by ID */
-router.get('/:userId', usersController.getUserById);
+/* GET user by Email */
+router.get('/:email', usersController.getUserByEmail);
 
 /* POST new user */
 router.post('/', usersController.createUser);
