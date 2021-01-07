@@ -1,10 +1,10 @@
 const { query } = require('../index');
 
 const {
-  initialUser,
+  initialUsers,
   initialPosts,
   initialMoods,
-  initialTrophy,
+  initialTrophies,
   initialQuote,
   initialNotification,
 } = require('./seedData');
@@ -69,20 +69,17 @@ async function populateMoodsTable() {
 }
 
 async function populateTrophiesTable() {
-  await query(
-    `INSERT INTO trophies(
-          user_id,
-          trophy_name,
-          trophy_img,
-          awarded
-        ) VALUES ($1, $2, $3, $4) RETURNING *;`,
-    [
-      initialTrophy.userId,
-      initialTrophy.trophyName,
-      initialTrophy.trophyImg,
-      initialTrophy.awarded,
-    ]
-  );
+  for (const trophy of initialTrophies) {
+    await query(
+      `INSERT INTO trophies(
+            user_id,
+            trophy_name,
+            trophy_img,
+            awarded
+          ) VALUES ($1, $2, $3, $4) RETURNING *;`,
+      [trophy.userId, trophy.trophyName, trophy.trophyImg, trophy.awarded]
+    );
+  }
 }
 
 async function populateQuotesTable() {
@@ -106,12 +103,12 @@ async function populateNotificationsTable() {
 }
 
 async function populateAllTables() {
-  await populateUsersTable();
+  // await populateUsersTable();
   await populatePostsTable();
-  await populateMoodsTable();
-  await populateTrophiesTable();
-  await populateQuotesTable();
-  await populateNotificationsTable();
+  // await populateMoodsTable();
+  // await populateTrophiesTable();
+  // await populateQuotesTable();
+  // await populateNotificationsTable();
   console.log('Tables should be populated now.');
 }
 

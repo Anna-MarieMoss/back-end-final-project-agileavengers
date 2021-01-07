@@ -1,11 +1,53 @@
-const initialUser = {
-  name: 'Alice',
-  email: 'alice@alice.com',
-  password: 'none',
-  personality: 'none',
-  startDate: 'none',
-  points: 0,
-};
+const initialUsers = [
+  {
+    name: 'Alice',
+    email: 'aliceholden01@gmail.com',
+    password: 'none',
+    personality: 'none',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Emma',
+    email: 'erandle2211@gmail.com',
+    password: 'none',
+    personality: 'none',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Jeremy',
+    email: 'jeremylaw2308@gmail.com',
+    password: 'none',
+    personality: 'none',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Isabel',
+    email: 'isabelholland90@gmail.com',
+    password: 'none',
+    personality: 'none',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Anna-Marie',
+    email: 'ambrown1976@googlemail.com',
+    password: 'none',
+    personality: 'none',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Mahdi',
+    email: 'Mahdiharoun93@gmail.com',
+    password: 'none',
+    personality: 'none',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+];
 
 const initialPosts = [
   {
@@ -14,12 +56,12 @@ const initialPosts = [
     image: 'none',
     video: 'none',
     audio: 'none',
-    date: '2020-09-20',
+    date: '2018-07-20',
     favorite: true,
   },
   {
     userId: 1,
-    text: 'I hate the course',
+    text: 'I adore the course',
     image: 'none',
     video: 'none',
     audio: 'none',
@@ -81,7 +123,7 @@ const initialMoods = [
   },
 ];
 
-const initialTrophy = [
+const initialTrophies = [
   {
     userId: 1,
     trophyName: 'Github',
@@ -153,11 +195,10 @@ const initialTrophy = [
     trophyName: 'AWS',
     trophyImg: null,
     awarded: false,
-  }
+  },
 ];
 
 const initialQuote = {
-  id: 1,
   userId: 1,
   quote:
     'Try not to be so positional on your stance when working in teams, it is good to stay open minded to other opinions and ideas.',
@@ -165,16 +206,15 @@ const initialQuote = {
 };
 
 const initialNotification = {
-  id: 1,
   userId: 1,
   notification: 'How have you found School of Code today?',
 };
 
 module.exports = {
-  initialUser,
+  initialUsers,
   initialPosts,
   initialMoods,
-  initialTrophy,
+  initialTrophies,
   initialQuote,
   initialNotification,
 };

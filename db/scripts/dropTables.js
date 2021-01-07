@@ -26,11 +26,11 @@ async function dropNotificationsTable() {
 
 async function dropAllTables() {
   await dropPostsTable();
-  await dropMoodsTable();
-  await dropTrophiesTable();
-  await dropQuotesTable();
-  await dropNotificationsTable();
-  await dropUsersTable(); // drop this last as the others refer to it?
+  // await dropMoodsTable();
+  // await dropTrophiesTable();
+  // await dropQuotesTable();
+  // await dropNotificationsTable();
+  // await dropUsersTable(); // drop this last as the others refer to it?
   console.log('Tables should be deleted now.');
 }
 

@@ -67,16 +67,16 @@ async function createNotificationsTable() {
 }
 
 const createAllTables = async () => {
-  await createUsersTable();
-  console.log('users created');
+  // await createUsersTable();
+  // console.log('users created');
   await createPostsTable();
   console.log('posts created');
-  await createMoodsTable();
-  console.log('moods created');
-  await createTrophiesTable();
-  await createQuotesTable();
-  await createNotificationsTable();
-  console.log('Tables should be created now.');
+  // await createMoodsTable();
+  // console.log('moods created');
+  // await createTrophiesTable();
+  // await createQuotesTable();
+  // await createNotificationsTable();
+  // console.log('Tables should be created now.');
 };
 
 module.exports = { createAllTables };

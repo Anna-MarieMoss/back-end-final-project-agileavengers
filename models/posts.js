@@ -97,14 +97,14 @@ async function createPost(newPost) {
         date,
         favorite)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING id;`,
+      RETURNING *;`,
       [
         newPost.user_id,
         newPost.text,
         urlImage,
         urlVideo,
         urlAudio,
-        new Date().toDateString(),
+        newPost.date.slice(0, 10) || new Date().toDateString().slice(0, 10),
         false,
       ]
     );
