@@ -13,6 +13,6 @@ router.get('/:userId/awarded', trophiesController.getAwardedTrophiesById);
 router.post('/', trophiesController.createTrophy);
 
 /* UPDATE existing trophy */
-router.patch('/:userId', trophiesController.updateTrophyByTrophyId);
+router.patch('/:trophyId', trophiesController.updateTrophyByTrophyId);
 
 module.exports = router;

@@ -78,7 +78,7 @@ async function populateTrophiesTable() {
      trophies(user_id, name, path, color, awarded)
      VALUES ($1, $2, $3, $4, $5)
      RETURNING *;`,
-      [1, trophy.name, trophy.path, trophy.color, trophy.awarded]
+      [9, trophy.name, trophy.path, trophy.color, trophy.awarded]
     );
   }
 }
