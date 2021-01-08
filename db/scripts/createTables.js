@@ -41,8 +41,9 @@ async function createTrophiesTable() {
   let res = await query(`CREATE TABLE trophies (
       id SERIAL PRIMARY KEY,
       user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL,
-      trophy_name TEXT,
-      trophy_img TEXT,
+      name TEXT,
+      path TEXT,
+      color TEXT,
       awarded BOOLEAN
   )`);
   console.log(res);
@@ -69,11 +70,11 @@ async function createNotificationsTable() {
 const createAllTables = async () => {
   // await createUsersTable();
   // console.log('users created');
-  await createPostsTable();
-  console.log('posts created');
+  // await createPostsTable();
+  //console.log('posts created');
   // await createMoodsTable();
   // console.log('moods created');
-  // await createTrophiesTable();
+  await createTrophiesTable();
   // await createQuotesTable();
   // await createNotificationsTable();
   // console.log('Tables should be created now.');

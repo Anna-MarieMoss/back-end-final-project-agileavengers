@@ -104,7 +104,7 @@ async function createPost(newPost) {
         urlImage,
         urlVideo,
         urlAudio,
-        newPost.date.slice(0, 10) || new Date().toDateString().slice(0, 10),
+        newPost.date || new Date().toDateString(),
         false,
       ]
     );

@@ -25,9 +25,9 @@ async function dropNotificationsTable() {
 }
 
 async function dropAllTables() {
-  await dropPostsTable();
+  //await dropPostsTable();
   // await dropMoodsTable();
-  // await dropTrophiesTable();
+  await dropTrophiesTable();
   // await dropQuotesTable();
   // await dropNotificationsTable();
   // await dropUsersTable(); // drop this last as the others refer to it?
