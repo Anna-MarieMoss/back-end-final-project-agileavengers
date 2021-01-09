@@ -16,7 +16,8 @@ async function createUsersTable() {
 async function createPostsTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS posts (
       id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE ,
+      user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+      mood INTEGER,
       text TEXT,
       image TEXT,
       video TEXT,

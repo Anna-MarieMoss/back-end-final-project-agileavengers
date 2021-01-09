@@ -52,6 +52,7 @@ const initialUsers = [
 const initialPosts = [
   {
     userId: 1,
+    mood: 4,
     text: 'I love the course',
     image: 'none',
     video: 'none',
@@ -61,6 +62,7 @@ const initialPosts = [
   },
   {
     userId: 1,
+    mood: 5,
     text: 'I adore the course',
     image: 'none',
     video: 'none',

@@ -36,15 +36,17 @@ async function populatePostsTable() {
     await query(
       `INSERT INTO posts(
           user_id,
+          mood,
           text,
           image,
           video,
           audio,
           date,
           favorite
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`,
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;`,
       [
         post.userId,
+        post.mood,
         post.text,
         post.image,
         post.video,
