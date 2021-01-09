@@ -41,7 +41,7 @@ const initialUsers = [
   },
   {
     name: 'Mahdi',
-    email: 'Mahdiharoun93@gmail.com',
+    email: 'mahdiharoun93@gmail.com',
     password: 'none',
     personality: 'none',
     startDate: '2020-09-20',
