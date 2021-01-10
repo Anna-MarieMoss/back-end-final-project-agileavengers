@@ -18,7 +18,7 @@ const jwksRsa = require('jwks-rsa');
 // Authorization middleware. When used, the
 // Access Token must exist and be verified against
 // the Auth0 JSON Web Key Set
-const checkJwt = jwt({
+cons = jwt({
   // Dynamically provide a signing key
   // based on the kid in the header and
   // the signing keys provided by the JWKS endpoint.
@@ -50,9 +50,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', indexRouter);
-app.use('/posts', checkJwt, postsRouter);
-app.use('/users', checkJwt, usersRouter);
-app.use('/moods', checkJwt, moodsRouter);
-app.use('/moodsandposts', checkJwt, moodsAndPostsRouter);
-app.use('/trophies', checkJwt, trophiesRouter);
+app.use('/posts', postsRouter);
+app.use('/users', usersRouter);
+app.use('/moods', moodsRouter);
+app.use('/moodsandposts', moodsAndPostsRouter);
+app.use('/trophies', trophiesRouter);
 module.exports = app;
