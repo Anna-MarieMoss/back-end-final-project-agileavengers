@@ -89,26 +89,22 @@ async function createPost(newPost) {
 
     const response = await query(
       `INSERT INTO
-      posts(
-        user_id,
-        mood,
+      posts(user_id,
         text,
         image,
         video,
         audio,
         date,
-        favorite
-        )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-      RETURNING *;`,
+        favorite)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING id;`,
       [
         newPost.user_id,
-        newPost.mood,
         newPost.text,
         urlImage,
         urlVideo,
         urlAudio,
-        newPost.date || new Date().toDateString(),
+        new Date().toDateString(),
         false,
       ]
     );
@@ -125,23 +121,20 @@ async function createPost(newPost) {
 async function updatePostByPostId(postId, updatedPost) {
   const response = await query(
     `UPDATE posts SET (
-      mood,
       text,
       image,
       video,
       audio,
       favorite
     ) = (
-      COALESCE($1, mood), 
-      COALESCE($2, text), 
-      COALESCE($3, image), 
-      COALESCE($4, video), 
-      COALESCE($5, audio), 
-      COALESCE($6, favorite)
+      COALESCE($1, text), 
+      COALESCE($2, image), 
+      COALESCE($3, video), 
+      COALESCE($4, audio), 
+      COALESCE($5, favorite)
       )
     WHERE id = $6 RETURNING *;`,
     [
-      updatedPost.mood,
       updatedPost.text,
       updatedPost.image,
       updatedPost.video,

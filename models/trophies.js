@@ -3,12 +3,12 @@ const { query } = require('../db/index');
 //GET all trophies for a user (whether awarded or not)
 
 async function getTrophiesById(userId) {
-  const response = await query(
-    `SELECT * FROM trophies
+    const response = await query(
+        `SELECT * FROM trophies
           WHERE user_id = $1
           ORDER BY id;`,
-    [userId]
-  );
+        [userId]
+      );
   return response.rows;
 }
 
@@ -16,27 +16,33 @@ async function getTrophiesById(userId) {
 
 async function getAwardedTrophiesById(userId) {
   const response = await query(
-    `SELECT * FROM trophies
+      `SELECT * FROM trophies
         WHERE user_id = $1 AND awarded = true
         ORDER BY id;`,
-    [userId]
-  );
+      [userId]
+    );
   return response.rows;
 }
 
 //POST all trophies as false for new user
-async function createTrophyTable(trophyTable, userId) {
-  let arr = [];
-  for (const trophy of trophyTable) {
-    const response = await query(
-      `INSERT INTO
-     trophies(user_id, name, path, color, awarded)
-     VALUES ($1, $2, $3, $4, $5)
+async function createTrophyTable(trophyTable, userId){
+  let arr = []
+  for (const trophy of trophyTable){
+    const response = 
+    await query(
+    `INSERT INTO
+     trophies(user_id, trophy_name, trophy_img, awarded)
+     VALUES ($1, $2, $3, $4)
      RETURNING *;`,
-      [userId, trophy.name, trophy.path, trophy.color, trophy.awarded]
-    );
-    arr.push(response.rows[0].name);
-  }
+    [
+      userId,
+      trophy.trophyName,
+      trophy.trophyImg,
+      trophy.awarded
+    ]
+  );
+  arr.push(response.rows[0].trophy_name);
+  };
   return arr;
 }
 
@@ -51,7 +57,7 @@ async function createTrophy(newTrophy) {
       newTrophy.userId,
       newTrophy.trophyName,
       newTrophy.trophyImg,
-      newTrophy.awarded,
+      newTrophy.awarded
     ]
   );
   return response.rows;
@@ -75,5 +81,5 @@ module.exports = {
   getAwardedTrophiesById,
   createTrophyTable,
   createTrophy,
-  updateTrophyByTrophyId,
+  updateTrophyByTrophyId
 };

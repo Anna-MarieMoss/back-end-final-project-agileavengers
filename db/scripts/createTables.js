@@ -3,8 +3,8 @@ const { query } = require('../index.js');
 async function createUsersTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY NOT NULL,
-    name TEXT,
-    email TEXT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
     password TEXT,
     personality TEXT,
     start_date TEXT,
@@ -16,8 +16,7 @@ async function createUsersTable() {
 async function createPostsTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS posts (
       id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-      mood INTEGER,
+      user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE ,
       text TEXT,
       image TEXT,
       video TEXT,
@@ -42,9 +41,8 @@ async function createTrophiesTable() {
   let res = await query(`CREATE TABLE trophies (
       id SERIAL PRIMARY KEY,
       user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL,
-      name TEXT,
-      path TEXT,
-      color TEXT,
+      trophy_name TEXT,
+      trophy_img TEXT,
       awarded BOOLEAN
   )`);
   console.log(res);
