@@ -26,7 +26,7 @@ async function populateUsersTable() {
         user.email,
         user.password,
         user.personality,
-        user.start_date,
+        user.startDate,
         user.points,
       ]
     );
@@ -34,9 +34,10 @@ async function populateUsersTable() {
 }
 
 async function populatePostsTable() {
-  for (const post of initialPosts) {
-    await query(
-      `INSERT INTO posts(
+  for (let i = 1; i < initialUsers.length + 1; i++) {
+    for (const post of initialPosts) {
+      await query(
+        `INSERT INTO posts(
           user_id,
           mood,
           text,
@@ -46,38 +47,41 @@ async function populatePostsTable() {
           date,
           favorite
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;`,
-      [
-        post.userId,
-        post.mood,
-        post.text,
-        post.image,
-        post.video,
-        post.audio,
-        new Date().toDateString(),
-        post.favorite,
-      ]
-    );
+        [
+          i,
+          post.mood,
+          post.text,
+          post.image,
+          post.video,
+          post.audio,
+          new Date(post.date).toDateString(),
+          post.favorite,
+        ]
+      );
+    }
   }
 }
 
 async function populateMoodsTable() {
-  for (const mood of initialMoods) {
-    await query(
-      `INSERT INTO moods(
+  for (let i = 1; i < initialUsers.length + 1; i++) {
+    for (const mood of initialMoods) {
+      await query(
+        `INSERT INTO moods(
           user_id,
           mood,
           date
         ) VALUES ($1, $2, $3) RETURNING *;`,
-      [mood.userId, mood.mood, mood.date]
-    );
+        [i, mood.mood, mood.date]
+      );
+    }
   }
 }
 
 // userId currently hard coded
 
 async function populateTrophiesTable() {
-  for (const trophy of trophyTable.trophyTable) {
-    for (let i = 1; i < initialUsers.length + 1; i++) {
+  for (let i = 1; i < initialUsers.length + 1; i++) {
+    for (const trophy of trophyTable.trophyTable) {
       const response = await query(
         `INSERT INTO
      trophies(user_id, name, path, color, awarded)
