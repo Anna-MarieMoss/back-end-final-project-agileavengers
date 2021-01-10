@@ -20,7 +20,7 @@ async function createUser(req, res, next) {
   const data = await postsModel.createUser(req.body);
   // add function for creating trophies table all trophies for that user w awarded false
   const userId = data[0].id;
-  console.log(trophyTable);
+  //console.log(trophyTable);
   const createTrophies = await trophyModel.createTrophyTable(
     trophyTable.trophyTable,
     userId

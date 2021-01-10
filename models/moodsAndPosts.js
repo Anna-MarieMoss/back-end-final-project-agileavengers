@@ -2,7 +2,7 @@ const { query } = require('../db/index');
 
 async function getMoodsAndPostsById(userId) {
   const response = await query(
-    `SELECT posts.user_id, posts.id, text, image, video, audio, favorite, mood, posts.date
+    `SELECT posts.user_id, posts.id, moods.mood ,text, image, video, audio, favorite, posts.date
         FROM posts
         INNER JOIN moods
         ON posts.user_id = moods.user_id

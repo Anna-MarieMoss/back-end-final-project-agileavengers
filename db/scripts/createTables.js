@@ -3,8 +3,8 @@ const { query } = require('../index.js');
 async function createUsersTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY NOT NULL,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL,
+    name TEXT,
+    email TEXT,
     password TEXT,
     personality TEXT,
     start_date TEXT,
@@ -16,7 +16,8 @@ async function createUsersTable() {
 async function createPostsTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS posts (
       id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE ,
+      user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+      mood INTEGER,
       text TEXT,
       image TEXT,
       video TEXT,
@@ -68,16 +69,16 @@ async function createNotificationsTable() {
 }
 
 const createAllTables = async () => {
-  // await createUsersTable();
-  // console.log('users created');
-  // await createPostsTable();
-  //console.log('posts created');
-  // await createMoodsTable();
-  // console.log('moods created');
+  await createUsersTable();
+  console.log('users created');
+  await createPostsTable();
+  console.log('posts created');
+  await createMoodsTable();
+  console.log('moods created');
   await createTrophiesTable();
-  // await createQuotesTable();
-  // await createNotificationsTable();
-  // console.log('Tables should be created now.');
+  await createQuotesTable();
+  await createNotificationsTable();
+  console.log('Tables should be created now.');
 };
 
 module.exports = { createAllTables };
