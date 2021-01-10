@@ -25,8 +25,8 @@ async function createTrophy(req, res, next) {
 async function updateTrophyByTrophyId(req, res, next) {
   res.json({
     success: true,
-    payload: await postsModel.updateTrophyByTrophyId(req.params.trophyId),
-    message: `Updated trophy: '${req.params.trophyId}' to be awarded`,
+    payload: await postsModel.updateTrophyByTrophyId(req.params.id),
+    message: `Updated trophy: '${req.body.trophyName}' to be awarded`,
   });
 }
 

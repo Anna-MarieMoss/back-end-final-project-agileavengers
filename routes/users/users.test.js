@@ -1,7 +1,6 @@
 const app = require('../../app');
 const supertest = require('supertest');
 const request = supertest(app);
-const { initialUsers } = require('../../db/scripts/seedData/index');
 //const assert = require('assert'); // not sure what this is used for?
 
 const someUserObject = expect.objectContaining({
@@ -30,10 +29,10 @@ describe('GET /users', () => {
 
 // TEST GET USER BY ID
 
-describe('GET /users/:email', () => {
+describe('GET /users/:UserId', () => {
   it('should return a User object', async (done) => {
-    const response = await request.get(`/users/${initialUsers[0].email}`);
-    //console.log('response.body.payload is:', response.body.payload);
+    const response = await request.get('/users/1');
+    //console.log(response.body.payload[0] + 'equals' + someUserObject);
     expect(response.body.payload[0]).toEqual(someUserObject);
     expect(response.status).toBe(200);
     done();
@@ -54,7 +53,7 @@ describe('POST /users', () => {
     };
     const response = await request.post('/users').send(newUser);
 
-    //console.log(response.body.payload[0]);
+    console.log(response.body.payload[0]);
 
     expect(response.body.payload[0]).toMatchObject({
       name: newUser.name,
@@ -73,11 +72,11 @@ describe('POST /users', () => {
 
 describe('PATCH /users/:userId', () => {
   it('should check that patch is updating specific user info', async (done) => {
-    const userId = 3;
+    const userId = 1;
     const updatedUser = {
-      name: 'Jeremy',
-      email: 'jeremylaw2308@gmail.com',
-      password: '',
+      name: 'Alice',
+      email: 'alice@alice.com',
+      password: 'password',
     };
 
     const response = await request.patch(`/users/${userId}`).send(updatedUser);
