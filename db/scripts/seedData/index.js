@@ -1,30 +1,105 @@
-const initialUser = {
-  name: 'Alice',
-  email: 'alice@alice.com',
-  password: 'none',
-  personality: 'none',
-  startDate: 'none',
-  points: 0,
-};
+const initialUsers = [
+  {
+    name: 'Alice',
+    email: 'aliceholden01@gmail.com',
+    password: '',
+    personality: '',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Emma',
+    email: 'erandle2211@gmail.com',
+    password: '',
+    personality: '',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Jeremy',
+    email: 'jeremylaw2308@gmail.com',
+    password: '',
+    personality: '',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Isabel',
+    email: 'isabelholland90@gmail.com',
+    password: '',
+    personality: '',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Anna-Marie',
+    email: 'ambrown1976@googlemail.com',
+    password: '',
+    personality: '',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+  {
+    name: 'Mahdi',
+    email: 'mahdiharoun93@gmail.com',
+    password: '',
+    personality: '',
+    startDate: '2020-09-20',
+    points: 0,
+  },
+];
 
 const initialPosts = [
   {
-    userId: 1,
-    text: 'I love the course',
-    image: 'none',
-    video: 'none',
-    audio: 'none',
-    date: '2020-09-20',
+    mood: 5,
+    text: 'Had a great first day, Everyone is so friendly!',
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-06',
     favorite: true,
   },
   {
-    userId: 1,
-    text: 'I hate the course',
-    image: 'none',
-    video: 'none',
-    audio: 'none',
-    date: '2020-09-20',
+    mood: 4,
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-06',
     favorite: false,
+  },
+  {
+    mood: 3,
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-06',
+    favorite: false,
+  },
+  {
+    mood: 2,
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-06',
+    favorite: false,
+  },
+  {
+    mood: 1,
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-06',
+    favorite: false,
+  },
+  {
+    mood: 4,
+    text:
+      'Today was tough but I managed to get some help with my problem and it is fixed!',
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-07',
+    favorite: true,
   },
 ];
 
@@ -81,7 +156,7 @@ const initialMoods = [
   },
 ];
 
-const initialTrophy = [
+const initialTrophies = [
   {
     userId: 1,
     trophyName: 'Github',
@@ -153,11 +228,10 @@ const initialTrophy = [
     trophyName: 'AWS',
     trophyImg: null,
     awarded: false,
-  }
+  },
 ];
 
 const initialQuote = {
-  id: 1,
   userId: 1,
   quote:
     'Try not to be so positional on your stance when working in teams, it is good to stay open minded to other opinions and ideas.',
@@ -165,16 +239,15 @@ const initialQuote = {
 };
 
 const initialNotification = {
-  id: 1,
   userId: 1,
   notification: 'How have you found School of Code today?',
 };
 
 module.exports = {
-  initialUser,
+  initialUsers,
   initialPosts,
   initialMoods,
-  initialTrophy,
+  initialTrophies,
   initialQuote,
   initialNotification,
 };

@@ -1,17 +1,19 @@
 const { query } = require('../index');
+const trophyTable = require('./trophyTableData');
 
 const {
-  initialUser,
+  initialUsers,
   initialPosts,
   initialMoods,
-  initialTrophy,
+  initialTrophies,
   initialQuote,
   initialNotification,
 } = require('./seedData');
 
 async function populateUsersTable() {
-  await query(
-    `INSERT INTO users(
+  for (let user of initialUsers) {
+    await query(
+      `INSERT INTO users(
         name,
         email,
         password,
@@ -19,70 +21,76 @@ async function populateUsersTable() {
         start_date,
         points
       ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
-    [
-      initialUser.name,
-      initialUser.email,
-      initialUser.password,
-      initialUser.personality,
-      initialUser.start_date,
-      initialUser.points,
-    ]
-  );
+      [
+        user.name,
+        user.email,
+        user.password,
+        user.personality,
+        user.startDate,
+        user.points,
+      ]
+    );
+  }
 }
 
 async function populatePostsTable() {
-  for (const post of initialPosts) {
-    await query(
-      `INSERT INTO posts(
+  for (let i = 1; i < initialUsers.length + 1; i++) {
+    for (const post of initialPosts) {
+      await query(
+        `INSERT INTO posts(
           user_id,
+          mood,
           text,
           image,
           video,
           audio,
           date,
           favorite
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`,
-      [
-        post.userId,
-        post.text,
-        post.image,
-        post.video,
-        post.audio,
-        new Date().toDateString(),
-        post.favorite,
-      ]
-    );
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;`,
+        [
+          i,
+          post.mood,
+          post.text,
+          post.image,
+          post.video,
+          post.audio,
+          new Date(post.date).toDateString(),
+          post.favorite,
+        ]
+      );
+    }
   }
 }
 
 async function populateMoodsTable() {
-  for (const mood of initialMoods) {
-    await query(
-      `INSERT INTO moods(
+  for (let i = 1; i < initialUsers.length + 1; i++) {
+    for (const mood of initialMoods) {
+      await query(
+        `INSERT INTO moods(
           user_id,
           mood,
           date
         ) VALUES ($1, $2, $3) RETURNING *;`,
-      [mood.userId, mood.mood, mood.date]
-    );
+        [i, mood.mood, mood.date]
+      );
+    }
   }
 }
 
+// userId currently hard coded
+
 async function populateTrophiesTable() {
-  await query(
-    `INSERT INTO trophies(
-          user_id,
-          trophy_name,
-          trophy_img,
-          awarded
-        ) VALUES ($1, $2, $3, $4) RETURNING *;`,
-    [
-      initialTrophy.userId,
-      initialTrophy.trophyName,
-      initialTrophy.trophyImg,
-      initialTrophy.awarded,
-    ]
-  );
+  for (let i = 1; i < initialUsers.length + 1; i++) {
+    for (const trophy of trophyTable.trophyTable) {
+      const response = await query(
+        `INSERT INTO
+     trophies(user_id, name, path, color, awarded)
+     VALUES ($1, $2, $3, $4, $5)
+     RETURNING *;`,
+        [i, trophy.name, trophy.path, trophy.color, trophy.awarded]
+      );
+    }
+  }
 }
 
 async function populateQuotesTable() {

@@ -29,7 +29,7 @@ async function createMood(newMood) {
         moods(user_id, mood, date)
         VALUES ($1,$2,$3)
         RETURNING id;`,
-    [newMood.user_id, newMood.mood, new Date().toDateString()]
+    [newMood.user_id, newMood.mood, newMood.date || new Date().toDateString()]
   );
   return response.rows;
 }
