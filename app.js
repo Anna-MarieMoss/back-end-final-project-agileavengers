@@ -7,8 +7,6 @@ var cors = require('cors');
 var indexRouter = require('./routes/');
 var usersRouter = require('./routes/users/users');
 var postsRouter = require('./routes/posts/posts');
-var moodsRouter = require('./archive/moods/moods');
-var moodsAndPostsRouter = require('./routes/moodsAndPosts');
 var trophiesRouter = require('./routes/trophies/trophies');
 
 const jwt = require('express-jwt');
@@ -52,7 +50,5 @@ app.use(cors());
 app.use('/', checkJwt, indexRouter);
 app.use('/posts', checkJwt, postsRouter);
 app.use('/users', checkJwt, usersRouter);
-app.use('/moods', checkJwt, moodsRouter);
-app.use('/moodsandposts', checkJwt, moodsAndPostsRouter);
 app.use('/trophies', checkJwt, trophiesRouter);
 module.exports = app;
