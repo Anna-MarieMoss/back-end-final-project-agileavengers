@@ -42,7 +42,7 @@ describe('GET /posts/:userId', () => {
 // NEEDS SOME WORK
 
 describe('POST /posts', () => {
-  it('should return the newly created Post object', async (done) => {
+  it('should create a new post in the database', async (done) => {
     const newPost = {
       user_id: 1,
       text: 'I love the course',
@@ -67,6 +67,34 @@ describe('POST /posts', () => {
     done();
   });
 });
+
+// describe('POST /posts', () => {
+//   it('should return the newly created Post object', async (done) => {
+//     const newPost = {
+//       user_id: 3,
+//       mood: 5,
+//       text: 'Test Post',
+//       image: 'C:UsersjezzaDownloadszoom-background.jpg',
+//       video: undefined,
+//       audio: undefined,
+//       date: new Date().toDateString(),
+//       favorite: true,
+//     };
+//     const getAllPostsResponse = await request.get('/posts');
+//     const numOfPosts = getAllPostsResponse.body.payload.length;
+
+//     const postResponse = await request.post('/posts').send(newPost);
+
+//     const newGetAllPostsResponse = await request.get('/posts');
+//     const newNumOfPosts = newGetAllPostsResponse.body.payload.length;
+
+//     expect(newNumOfPosts).toBe(numOfPosts + 1);
+//     expect(getAllPostsResponse.status).toBe(200);
+//     expect(postResponse.status).toBe(200);
+//     expect(newGetAllPostsResponse.status).toBe(200);
+//     done();
+//   });
+// });
 
 // TEST UPDATING A POST
 
