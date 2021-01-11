@@ -21,6 +21,7 @@ const someArrayOfUserObjects = expect.arrayContaining([someUserObject]);
 describe('GET /users', () => {
   it('should return all Users', async (done) => {
     const response = await request.get('/users');
+
     //console.log(response.body.payload[0] + 'equals' + someUserObject);
     expect(response.body.payload).toStrictEqual(someArrayOfUserObjects);
     expect(response.status).toBe(200);

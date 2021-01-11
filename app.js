@@ -7,7 +7,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/');
 var usersRouter = require('./routes/users/users');
 var postsRouter = require('./routes/posts/posts');
-var moodsRouter = require('./routes/moods/moods');
+var moodsRouter = require('./archive/moods/moods');
 var moodsAndPostsRouter = require('./routes/moodsAndPosts');
 var trophiesRouter = require('./routes/trophies/trophies');
 
@@ -18,7 +18,7 @@ const jwksRsa = require('jwks-rsa');
 // Authorization middleware. When used, the
 // Access Token must exist and be verified against
 // the Auth0 JSON Web Key Set
-cons = jwt({
+const checkJwt = jwt({
   // Dynamically provide a signing key
   // based on the kid in the header and
   // the signing keys provided by the JWKS endpoint.
@@ -49,10 +49,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-app.use('/', indexRouter);
-app.use('/posts', postsRouter);
-app.use('/users', usersRouter);
-app.use('/moods', moodsRouter);
-app.use('/moodsandposts', moodsAndPostsRouter);
-app.use('/trophies', trophiesRouter);
+app.use('/', checkJwt, indexRouter);
+app.use('/posts', checkJwt, postsRouter);
+app.use('/users', checkJwt, usersRouter);
+app.use('/moods', checkJwt, moodsRouter);
+app.use('/moodsandposts', checkJwt, moodsAndPostsRouter);
+app.use('/trophies', checkJwt, trophiesRouter);
 module.exports = app;
