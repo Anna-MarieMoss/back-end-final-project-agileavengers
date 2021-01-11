@@ -139,7 +139,7 @@ async function updatePostByPostId(postId, updatedPost) {
       COALESCE($5, audio), 
       COALESCE($6, favorite)
       )
-    WHERE id = $6 RETURNING *;`,
+    WHERE id = $7 RETURNING *;`,
     [
       updatedPost.mood,
       updatedPost.text,

@@ -10,11 +10,33 @@
 
 1. Clone the repo from https://github.com/SchoolOfCode/back-end-final-project-agileavengers.git
 
-2. Install any node modules: **npm install**
+```
+git clone https://github.com/SchoolOfCode/back-end-final-project-agileavengers.git
+```
 
-3. Run using: **npm run start**
+2. Install any node modules (you will need node and npm installed globally on your machine):
 
-4. OPTIONAL - Drop all current tables, create new tables and populate them with the seed data using: **npm run reinitialiseTables**
+```
+npm install
+```
+
+3. Run the back-end server using:
+
+```
+npm run start
+```
+
+4. OPTIONAL - Drop all current tables, create new tables and populate them with the seed data using:
+
+```
+npm run reinitialiseTables
+```
+
+5. To Run the Test Suite:
+
+```
+npm run test
+```
 
 # GET Requests
 
@@ -169,4 +191,14 @@ Using the PostID we can delete each individual post and remove it from the datab
 
 **http://localhost:3000/posts/postId**
 
-test
+---
+
+## Tech used:
+
+- Heroku and PostgreSQL for our database.
+- Auth0 for authentication and user accounts.
+- Cloudinary for multimedia hosting.
+
+---
+
+App by Agile Avengers✌️

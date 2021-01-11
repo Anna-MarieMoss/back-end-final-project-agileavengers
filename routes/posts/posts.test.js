@@ -38,7 +38,7 @@ describe('GET /posts/:userId', () => {
 // NEEDS SOME WORK
 
 describe('POST /posts', () => {
-  it('should return the newly created Post object', async (done) => {
+  it('should create a new post in the database', async (done) => {
     const newPost = {
       user_id: 3,
       mood: 5,
@@ -65,28 +65,56 @@ describe('POST /posts', () => {
   });
 });
 
-// TEST UPDATING A POST
-
-// describe('PATCH /posts/:postId', () => {
-//   it('should check that patch is updating specific Post info', async (done) => {
-//     const postId = 1;
-//     const updatedPost = {
-//       image: 'Some Image Link',
-//       video: 'Some Video Link',
+// describe('POST /posts', () => {
+//   it('should return the newly created Post object', async (done) => {
+//     const newPost = {
+//       user_id: 3,
+//       mood: 5,
+//       text: 'Test Post',
+//       image: 'C:UsersjezzaDownloadszoom-background.jpg',
+//       video: undefined,
+//       audio: undefined,
+//       date: new Date().toDateString(),
+//       favorite: true,
 //     };
-//     const response = await request.patch(`/posts/${postId}`).send(updatedPost);
-//     expect(response.body.payload[0]).toMatchObject({
-//       id: expect.any(Number),
-//       user_id: expect.any(Number),
-//       image: 'Some Image Link',
-//       video: 'Some Video Link',
-//       date: expect.any(String),
-//       favorite: expect.any(Boolean),
-//     });
-//     expect(response.status).toBe(200);
+//     const getAllPostsResponse = await request.get('/posts');
+//     const numOfPosts = getAllPostsResponse.body.payload.length;
+
+//     const postResponse = await request.post('/posts').send(newPost);
+
+//     const newGetAllPostsResponse = await request.get('/posts');
+//     const newNumOfPosts = newGetAllPostsResponse.body.payload.length;
+
+//     expect(newNumOfPosts).toBe(numOfPosts + 1);
+//     expect(getAllPostsResponse.status).toBe(200);
+//     expect(postResponse.status).toBe(200);
+//     expect(newGetAllPostsResponse.status).toBe(200);
 //     done();
 //   });
 // });
+
+// TEST UPDATING A POST
+
+describe('PATCH /posts/:postId', () => {
+  it('should check that patch is updating specific Post info', async (done) => {
+    const postId = 1;
+    const updatedPost = {
+      image: 'Some Image Link',
+      video: 'Some Video Link',
+    };
+    const response = await request.patch(`/posts/${postId}`).send(updatedPost);
+    expect(response.body.payload[0]).toMatchObject({
+      id: expect.any(Number),
+      user_id: expect.any(Number),
+      image: 'Some Image Link',
+      video: 'Some Video Link',
+      date: expect.any(String),
+      favorite: expect.any(Boolean),
+    });
+    expect(response.status).toBe(200);
+    done();
+  });
+});
 
 // TEST DELETING A POST
 
