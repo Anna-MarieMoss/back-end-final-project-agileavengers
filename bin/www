@@ -6,7 +6,7 @@
 
 var app = require('../app');
 var debug = require('debug')('back-end-final-project-agileavengers:server');
-var https = require('https');
+var http = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -16,10 +16,10 @@ var port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 
 /**
- * Create https server.
+ * Create http server.
  */
 
-var server = https.createServer(app);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -50,7 +50,7 @@ function normalizePort(val) {
 }
 
 /**
- * Event listener for https server 'error' event.
+ * Event listener for http server 'error' event.
  */
 
 function onError(error) {
@@ -76,7 +76,7 @@ function onError(error) {
 }
 
 /**
- * Event listener for https server 'listening' event.
+ * Event listener for http server 'listening' event.
  */
 
 function onListening() {
