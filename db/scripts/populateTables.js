@@ -49,7 +49,7 @@ async function populatePostsTable() {
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;`,
         [
           i,
-          post.mood,
+          post.mood || Math.floor(Math.random() * 5) + 1,
           post.text,
           post.image,
           post.video,
@@ -57,21 +57,6 @@ async function populatePostsTable() {
           new Date(post.date).toDateString(),
           post.favorite,
         ]
-      );
-    }
-  }
-}
-
-async function populateMoodsTable() {
-  for (let i = 1; i < initialUsers.length + 1; i++) {
-    for (const mood of initialMoods) {
-      await query(
-        `INSERT INTO moods(
-          user_id,
-          mood,
-          date
-        ) VALUES ($1, $2, $3) RETURNING *;`,
-        [i, mood.mood, mood.date]
       );
     }
   }
@@ -93,33 +78,10 @@ async function populateTrophiesTable() {
   }
 }
 
-async function populateQuotesTable() {
-  await query(
-    `INSERT INTO quotes (
-          user_id,
-          quote
-        ) VALUES ($1, $2) RETURNING *;`,
-    [initialQuote.userId, initialQuote.quote]
-  );
-}
-
-async function populateNotificationsTable() {
-  await query(
-    `INSERT INTO notifications(
-          user_id,
-          notification
-        ) VALUES ($1, $2) RETURNING *;`,
-    [initialNotification.userId, initialNotification.notification]
-  );
-}
-
 async function populateAllTables() {
   await populateUsersTable();
   await populatePostsTable();
-  await populateMoodsTable();
   await populateTrophiesTable();
-  await populateQuotesTable();
-  await populateNotificationsTable();
   console.log('Tables should be populated now.');
 }
 

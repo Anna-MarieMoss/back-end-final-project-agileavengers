@@ -60,99 +60,57 @@ const initialPosts = [
     favorite: true,
   },
   {
-    mood: 4,
+    mood: 3,
+    text: 'Bit of a slog today but got there in the end.',
     image: '',
     video: '',
     audio: '',
-    date: '2021-01-06',
+    date: '2021-01-07',
+    favorite: false,
+  },
+  {
+    mood: 4,
+    text: 'The day started off badly but ended really well.',
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-08',
+    favorite: true,
+  },
+  {
+    mood: 2,
+    text: 'I really struggled today, but tomorrow is another day!',
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-09',
+    favorite: false,
+  },
+  {
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-11',
     favorite: false,
   },
   {
     mood: 3,
-    image: '',
-    video: '',
-    audio: '',
-    date: '2021-01-06',
-    favorite: false,
-  },
-  {
-    mood: 2,
-    image: '',
-    video: '',
-    audio: '',
-    date: '2021-01-06',
-    favorite: false,
-  },
-  {
-    mood: 1,
-    image: '',
-    video: '',
-    audio: '',
-    date: '2021-01-06',
-    favorite: false,
-  },
-  {
-    mood: 4,
     text:
       'Today was tough but I managed to get some help with my problem and it is fixed!',
     image: '',
     video: '',
     audio: '',
-    date: '2021-01-07',
+    date: '2021-01-11',
+    favorite: false,
+  },
+  {
+    mood: 5,
+    text: 'Had a great day, everything clicked!',
+    image: '',
+    video: '',
+    audio: '',
+    date: '2021-01-12',
     favorite: true,
-  },
-];
-
-const initialMoods = [
-  {
-    userId: 1,
-    mood: 5,
-    date: '2020-09-20',
-  },
-  {
-    userId: 1,
-    mood: 3,
-    date: '2020-09-21',
-  },
-  {
-    userId: 1,
-    mood: 2,
-    date: '2020-09-22',
-  },
-  {
-    userId: 1,
-    mood: 4,
-    date: '2020-09-23',
-  },
-  {
-    userId: 1,
-    mood: 2,
-    date: '2020-09-24',
-  },
-  {
-    userId: 1,
-    mood: 1,
-    date: '2020-09-25',
-  },
-  {
-    userId: 1,
-    mood: 4,
-    date: '2020-09-26',
-  },
-  {
-    userId: 1,
-    mood: 5,
-    date: '2020-09-27',
-  },
-  {
-    userId: 1,
-    mood: 3,
-    date: '2020-09-28',
-  },
-  {
-    userId: 1,
-    mood: 2,
-    date: '2020-09-29',
   },
 ];
 
@@ -231,23 +189,20 @@ const initialTrophies = [
   },
 ];
 
-const initialQuote = {
-  userId: 1,
-  quote:
-    'Try not to be so positional on your stance when working in teams, it is good to stay open minded to other opinions and ideas.',
-  date: '20/09/2020',
-};
+// const initialQuote = {
+//   userId: 1,
+//   quote:
+//     'Try not to be so positional on your stance when working in teams, it is good to stay open minded to other opinions and ideas.',
+//   date: '20/09/2020',
+// };
 
-const initialNotification = {
-  userId: 1,
-  notification: 'How have you found School of Code today?',
-};
+// const initialNotification = {
+//   userId: 1,
+//   notification: 'How have you found School of Code today?',
+// };
 
 module.exports = {
   initialUsers,
   initialPosts,
-  initialMoods,
   initialTrophies,
-  initialQuote,
-  initialNotification,
 };

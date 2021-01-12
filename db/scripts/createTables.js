@@ -28,16 +28,6 @@ async function createPostsTable() {
   console.log(res);
 }
 
-async function createMoodsTable() {
-  let res = await query(`CREATE TABLE moods (
-      id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL,
-      mood INTEGER,
-      date DATE
-  )`);
-  console.log(res);
-}
-
 async function createTrophiesTable() {
   let res = await query(`CREATE TABLE trophies (
       id SERIAL PRIMARY KEY,
@@ -50,34 +40,12 @@ async function createTrophiesTable() {
   console.log(res);
 }
 
-async function createQuotesTable() {
-  let res = await query(`CREATE TABLE quotes (
-      id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL, 
-      quote TEXT
-  )`);
-  console.log(res);
-}
-
-async function createNotificationsTable() {
-  let res = await query(`CREATE TABLE notifications (
-      id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL,
-      notification TEXT
-  )`);
-  console.log(res);
-}
-
 const createAllTables = async () => {
   await createUsersTable();
   console.log('users created');
   await createPostsTable();
   console.log('posts created');
-  await createMoodsTable();
-  console.log('moods created');
   await createTrophiesTable();
-  await createQuotesTable();
-  await createNotificationsTable();
   console.log('Tables should be created now.');
 };
 

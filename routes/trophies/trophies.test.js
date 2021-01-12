@@ -42,9 +42,9 @@ describe('POST /users', () => {
     };
     const response = await request.post('/users').send(newUser);
 
-    console.log(response.body.message.substring(46));
+    console.log(response.body.message);
 
-    expect(response.body.message.substring(46)).toBe(
+    expect(response.body.message).toContain(
       `["Github","HTML","VSCode","JavaScript","CSS","Trello","SQL","Postman","Jest","React","Docker","AWS"]`
     );
     expect(response.status).toBe(200);
