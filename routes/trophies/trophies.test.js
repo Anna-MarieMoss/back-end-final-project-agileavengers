@@ -56,57 +56,29 @@ describe('POST /users', () => {
 
 describe('PATCH /trophies/:trophyId', () => {
   it('should check that patch is updating specific trophy', async (done) => {
-    const trophyId = 3;
-    const updatedTrophyTrue = {
-      awarded: true,
-    };
+    const trophyId = 25;
 
-    const trueResponse = await request
-      .patch(`/trophies/${trophyId}`)
-      .send(updatedTrophyTrue);
+    const getResponse = await request.get(`/trophies/${trophyId}`);
+
+    const patchResponse = await request.patch(`/trophies/${trophyId}`);
+
     console.log(
       '🚀 ~ file: trophies.test.js ~ line 70 ~ it ~ trueResponse',
-      trueResponse.body.payload
+      patchResponse.body.payload
     );
 
-    expect(trueResponse.body.payload[0]).toMatchObject({
+    expect(patchResponse.body.payload[0]).toMatchObject({
       id: expect.any(Number),
       user_id: expect.any(Number),
       name: expect.any(String),
       path: expect.any(String),
       color: expect.any(String),
-      awarded: true,
+      awarded: !getResponse.body.payload[0].awarded,
     });
 
-    expect(trueResponse.status).toBe(200);
+    expect(getResponse.status).toBe(200);
+    expect(patchResponse.status).toBe(200);
 
-    done();
-  });
-});
-
-describe('PATCH /trophies/:trophyId', () => {
-  it('should check that patch is updating specific trophy', async (done) => {
-    const trophyId = 3;
-    const updatedTrophyFalse = {
-      awarded: false,
-    };
-    const falseResponse = await request
-      .patch(`/trophies/${trophyId}`)
-      .send(updatedTrophyFalse);
-    console.log(
-      '🚀 ~ file: trophies.test.js ~ line 75 ~ it ~ falseResponse',
-      falseResponse.body.payload
-    );
-
-    expect(falseResponse.body.payload[0]).toMatchObject({
-      id: expect.any(Number),
-      user_id: expect.any(Number),
-      name: expect.any(String),
-      path: expect.any(String),
-      color: expect.any(String),
-      awarded: false,
-    });
-    expect(falseResponse.status).toBe(200);
     done();
   });
 });

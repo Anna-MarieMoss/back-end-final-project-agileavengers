@@ -70,10 +70,23 @@ async function updateTrophyByTrophyId(trophyId) {
   return response.rows;
 }
 
+async function updateTrophyByUserIdAndName(userId, name) {
+  const response = await query(
+    `UPDATE trophies 
+     SET awarded = true
+     WHERE user_id = $1
+     AND name = $2
+     RETURNING *;`,
+    [userId, name]
+  );
+  return response.rows;
+}
+
 module.exports = {
   getTrophiesById,
   getAwardedTrophiesById,
   createTrophyTable,
   createTrophy,
   updateTrophyByTrophyId,
+  updateTrophyByUserIdAndName,
 };
