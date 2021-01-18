@@ -41,10 +41,10 @@ async function createTrophiesTable() {
 }
 
 const createAllTables = async () => {
-  await createUsersTable();
-  console.log('users created');
-  await createPostsTable();
-  console.log('posts created');
+  // await createUsersTable();
+  // console.log('users created');
+  // await createPostsTable();
+  // console.log('posts created');
   await createTrophiesTable();
   console.log('Tables should be created now.');
 };

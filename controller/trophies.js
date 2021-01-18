@@ -26,7 +26,18 @@ async function updateTrophyByTrophyId(req, res, next) {
   res.json({
     success: true,
     payload: await postsModel.updateTrophyByTrophyId(req.params.trophyId),
-    message: `Updated trophy: '${req.params.trophyId}' to be awarded`,
+    message: `Updated trophy: '${req.params.trophyId}'s' awarded status`,
+  });
+}
+
+async function updateTrophyByUserIdAndName(req, res, next) {
+  res.json({
+    success: true,
+    payload: await postsModel.updateTrophyByUserIdAndName(
+      req.params.userId,
+      req.params.name
+    ),
+    message: `Updated '${req.params.name}' trophy with userId: '${req.params.userId}' to be awarded`,
   });
 }
 
@@ -35,4 +46,5 @@ module.exports = {
   getAwardedTrophiesById,
   createTrophy,
   updateTrophyByTrophyId,
+  updateTrophyByUserIdAndName,
 };

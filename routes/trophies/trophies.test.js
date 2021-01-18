@@ -4,7 +4,7 @@ const request = supertest(app);
 const { initialUsers } = require('../../db/scripts/seedData/index');
 //const assert = require('assert'); // not sure what this is used for?
 
-const someTrophyObject = expect.objectContaining({
+let someTrophyObject = expect.objectContaining({
   id: expect.any(Number),
   user_id: 3,
   name: expect.any(String),
@@ -13,13 +13,13 @@ const someTrophyObject = expect.objectContaining({
   awarded: expect.any(Boolean),
 });
 
-const someArrayOfTrophyObjects = expect.arrayContaining([someTrophyObject]);
+let someArrayOfTrophyObjects = expect.arrayContaining([someTrophyObject]);
 
 // TEST TROPHIES USER BY ID
 
 describe('GET /trophies/3', () => {
   it('should return a User object', async (done) => {
-    const response = await request.get(`/trophies/3`);
+    let response = await request.get(`/trophies/3`);
     //console.log('response.body.payload is:', response.body.payload);
     //console.log(response.body.payload);
     expect(response.body.payload[0]).toEqual(someTrophyObject);
@@ -32,7 +32,7 @@ describe('GET /trophies/3', () => {
 
 describe('POST /users', () => {
   it('should create new trophytable for new user', async (done) => {
-    const newUser = {
+    let newUser = {
       name: 'Jeremy',
       email: 'jeremy@jeremy.com',
       password: 'password',
@@ -40,12 +40,12 @@ describe('POST /users', () => {
       start_date: '2020-09-20',
       points: 0,
     };
-    const response = await request.post('/users').send(newUser);
+    let response = await request.post('/users').send(newUser);
 
     console.log(response.body.message);
 
     expect(response.body.message).toContain(
-      `["Github","HTML","VSCode","JavaScript","CSS","Trello","SQL","Postman","Jest","React","Docker","AWS"]`
+      `["1 Day Streak","5 Day Streak","20 Day Streak","80 day Streak","Github","HTML","VSCode","JavaScript","CSS","Trello","SQL","Postman","Jest","React","Docker","AWS"]`
     );
     expect(response.status).toBe(200);
     done();
@@ -55,58 +55,53 @@ describe('POST /users', () => {
 // TEST UPDATING A TROPHY
 
 describe('PATCH /trophies/:trophyId', () => {
-  it('should check that patch is updating specific trophy', async (done) => {
-    const trophyId = 3;
-    const updatedTrophyTrue = {
-      awarded: true,
-    };
+  it('should check that patch is updating specific trophy by Id', async (done) => {
+    let trophyId = 25;
 
-    const trueResponse = await request
-      .patch(`/trophies/${trophyId}`)
-      .send(updatedTrophyTrue);
+    let patchResponseOne = await request.patch(`/trophies/${trophyId}`);
+    let patchResponseTwo = await request.patch(`/trophies/${trophyId}`);
+
     console.log(
-      '🚀 ~ file: trophies.test.js ~ line 70 ~ it ~ trueResponse',
-      trueResponse.body.payload
+      '🚀 ~ file: trophies.test.js ~ line 70 ~ it ~ Patches',
+      patchResponseOne.body.payload,
+      patchResponseTwo.body.payload
     );
 
-    expect(trueResponse.body.payload[0]).toMatchObject({
-      id: expect.any(Number),
-      user_id: expect.any(Number),
-      name: expect.any(String),
-      path: expect.any(String),
-      color: expect.any(String),
-      awarded: true,
-    });
+    expect(patchResponseOne.body.payload[0].awarded).toBe(
+      !patchResponseTwo.body.payload[0].awarded
+    );
 
-    expect(trueResponse.status).toBe(200);
+    expect(patchResponseOne.status).toBe(200);
+    expect(patchResponseTwo.status).toBe(200);
 
     done();
   });
 });
 
-describe('PATCH /trophies/:trophyId', () => {
-  it('should check that patch is updating specific trophy', async (done) => {
-    const trophyId = 3;
-    const updatedTrophyFalse = {
-      awarded: false,
-    };
-    const falseResponse = await request
-      .patch(`/trophies/${trophyId}`)
-      .send(updatedTrophyFalse);
+describe('PATCH /trophies/:userId/:name', () => {
+  it('should check that patch is updating specific trophy by userId and name', async (done) => {
+    let userId = 3;
+    let name = 'HTML';
+    let trophyId = 26;
+
+    let getResponse = await request.get(`/trophies/${trophyId}`);
+
+    if (getResponse.body.payload[0].awarded === true) {
+      await request.patch(`/trophies/${getResponse.body.payload[0].id}`);
+    }
+
+    let patchResponse = await request.patch(`/trophies/${userId}/${name}`);
+
     console.log(
-      '🚀 ~ file: trophies.test.js ~ line 75 ~ it ~ falseResponse',
-      falseResponse.body.payload
+      '🚀 ~ file: trophies.test.js ~ line 70 ~ it ~ trueResponse',
+      patchResponse.body.payload
     );
 
-    expect(falseResponse.body.payload[0]).toMatchObject({
-      id: expect.any(Number),
-      user_id: expect.any(Number),
-      name: expect.any(String),
-      path: expect.any(String),
-      color: expect.any(String),
-      awarded: false,
-    });
-    expect(falseResponse.status).toBe(200);
+    expect(patchResponse.body.payload[0].awarded).toBe(true);
+
+    expect(getResponse.status).toBe(200);
+    expect(patchResponse.status).toBe(200);
+
     done();
   });
 });
