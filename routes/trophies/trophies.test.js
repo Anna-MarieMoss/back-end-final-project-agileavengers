@@ -45,7 +45,7 @@ describe('POST /users', () => {
     console.log(response.body.message);
 
     expect(response.body.message).toContain(
-      `["1 Day Streak","5 Day Streak","20 Day Streak","80 day Streak","Github","HTML","VSCode","JavaScript","CSS","Trello","SQL","Postman","Jest","React","Docker","AWS"]`
+      `["Github","HTML","VSCode","JavaScript","CSS","Trello","SQL","Postman","Jest","React","Docker","AWS","1 Day Streak","10 Day Streak","30 Day Streak"]`
     );
     expect(response.status).toBe(200);
     done();
