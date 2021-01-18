@@ -79,8 +79,8 @@ async function populateTrophiesTable() {
 }
 
 async function populateAllTables() {
-  await populateUsersTable();
-  await populatePostsTable();
+  // await populateUsersTable();
+  // await populatePostsTable();
   await populateTrophiesTable();
   console.log('Tables should be populated now.');
 }

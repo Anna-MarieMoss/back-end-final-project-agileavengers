@@ -13,9 +13,9 @@ async function dropTrophiesTable() {
 }
 
 async function dropAllTables() {
-  await dropPostsTable();
+  // await dropPostsTable();
   await dropTrophiesTable();
-  await dropUsersTable(); // drop this last as the others refer to it?
+  // await dropUsersTable(); // drop this last as the others refer to it?
   console.log('Tables should be deleted now.');
 }
 

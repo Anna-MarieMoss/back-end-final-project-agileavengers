@@ -47,8 +47,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-app.use('/', indexRouter);
-app.use('/posts', postsRouter);
-app.use('/users', usersRouter);
-app.use('/trophies', trophiesRouter);
+app.use('/', checkJwt, indexRouter);
+app.use('/posts', checkJwt, postsRouter);
+app.use('/users', checkJwt, usersRouter);
+app.use('/trophies', checkJwt, trophiesRouter);
 module.exports = app;
